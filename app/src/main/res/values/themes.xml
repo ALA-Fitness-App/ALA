@@ -2,15 +2,15 @@
     <!-- Base application theme. -->
     <style name="Theme.ALAFitness" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/main_background</item>
-        <item name="colorPrimaryVariant">@color/accent_dark</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">#DF455C</item>
+        <item name="colorPrimaryVariant">#670211</item>
+        <item name="colorOnPrimary">#E0E1DF</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/secondary_background</item>
-        <item name="colorSecondaryVariant">@color/secondary_dark</item>
-        <item name="colorOnSecondary">@color/secondary_light</item>
+        <item name="colorSecondary">#77CDCD</item>
+        <item name="colorSecondaryVariant">#3E6A6A</item>
+        <item name="colorOnSecondary">#89A6BD</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">#FFFFFFFF</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>
