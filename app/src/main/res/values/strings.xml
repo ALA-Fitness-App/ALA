@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">ALAFitness</string>
+    <string name="ala_fitness_app_logo">ALA_Fitness_app_logo</string>
+    <string name="ala_fitness_name">ALA Fitness</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="sign_up_link"><u>Sign Up</u></string>
+    <string name="new_password">New password</string>
+    <string name="retype_password">Retype new password</string>
+    <string name="welcome">Welcome to the ALA Fitness! Please create your username and password!</string>
 </resources>
