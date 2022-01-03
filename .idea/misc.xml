@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ALA/app/src/main/res/layout/activity_fifth.xml" value="0.1328125" />
         <entry key="..\:/ALA/app/src/main/res/layout/activity_main.xml" value="0.12318840579710146" />
-        <entry key="..\:/ALA/app/src/main/res/layout/activity_profile.xml" value="0.152" />
+        <entry key="..\:/ALA/app/src/main/res/layout/activity_profile.xml" value="0.12" />
         <entry key="..\:/Users/laild/AndroidStudioProjects/ALAFitness/app/src/main/res/layout/activity_main.xml" value="0.16" />
       </map>
     </option>
