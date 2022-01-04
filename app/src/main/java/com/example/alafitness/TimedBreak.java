@@ -70,6 +70,8 @@ public class TimedBreak extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                Intent intent2 = new Intent(TimedBreak.this,ExerciseActivity.class);
+                startActivity(intent2);
 
             }
         }.start();

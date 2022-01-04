@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ALAFitness">
         <activity
+            android:name=".GetReady"
+            android:exported="false" />
+        <activity
+            android:name=".EndActivity"
+            android:exported="false" />
+        <activity
             android:name=".TimedBreak"
             android:exported="false" />
         <activity
