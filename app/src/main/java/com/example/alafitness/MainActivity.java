@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     EditText username, password, retypePassword;
-    Button buttonSignUp;
+    Button buttonSignUp, buttonSignIn;
     DBHelper DB;
 
 
@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.new_password);
         retypePassword = findViewById(R.id.retype_password);
         buttonSignUp = findViewById(R.id.sign_up_button);
+        buttonSignIn = findViewById(R.id.sign_in_button);
         DB = new DBHelper(this);
 
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +58,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             });
+
+        buttonSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent1);
+            }
+        });
         }
 
 
