@@ -4,58 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ExerciseActivity">
+    tools:context=".GetReady">
+
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
         android:text="EXPRESS"
         android:textSize="24sp"
-        android:gravity="center"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@id/timer_View"
+        app:layout_constraintBottom_toTopOf="@+id/timer_View"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.09" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/timer_View"
-        android:layout_width="120dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="10pt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:gravity="center"
         android:text="00:10"
-        android:textSize="25dp"
+        android:textSize="40dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <TextView
+        android:id="@+id/GetReadyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:text="GET RADY"
+        android:textColor="@color/design_default_color_primary_dark"
+        android:textSize="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/NextExerciseText"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timer_View"
-        app:srcCompat="@drawable/plank" />
+        app:layout_constraintTop_toBottomOf="@+id/timer_View" />
 
     <TextView
-        android:id="@+id/ExerciseText"
+        android:id="@+id/NextExerciseText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="200dp"
         android:text="Plank"
-        android:textSize="35dp"
         android:textColor="@color/design_default_color_primary_dark"
+        android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        />
 
     <Button
         android:id="@+id/pause_Button"
@@ -90,6 +96,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/pause_Button" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
