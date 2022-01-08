@@ -40,7 +40,7 @@
         android:id="@+id/GetReadyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GET RADY"
+        android:text="GET READY"
         android:textColor="@color/design_default_color_primary_dark"
         android:textSize="35dp"
         app:layout_constraintBottom_toTopOf="@+id/NextExerciseText"
