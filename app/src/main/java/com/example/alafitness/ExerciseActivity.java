@@ -8,14 +8,29 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.alafitness.model.Constants;
+import com.example.alafitness.model.Exercise;
+
+import java.util.List;
 
 public class ExerciseActivity extends AppCompatActivity {
 
     private Button nextBtn;
+    private TextView exerciseType;
+    private TextView timer;
+    private TextView exerciseName;
+    private ImageView exerciseImage;
+    private Long progress;
+
 
     private TextView startTimerView;
     private Button startPauseButton;
+
+    private List<Exercise> exercises;
+    int currentExercise = 0;
 
     private CountDownTimer countDownTimer;
 
@@ -25,8 +40,16 @@ public class ExerciseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //startTimer();
         setContentView(R.layout.activity_exercise);
 
+
+
+        exercises = Constants.getExercises();
+        exerciseType = findViewById(R.id.tvType);
+        timer = findViewById(R.id.tvTimer);
+        exerciseName = findViewById(R.id.ExerciseText);
+        exerciseImage = findViewById(R.id.ivExerciseImage);
 
         nextBtn = (Button) findViewById(R.id.next_Button);
         nextBtn.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +71,17 @@ public class ExerciseActivity extends AppCompatActivity {
             }
         });
 
-        updateTimer();
+        Exercise exercise = exercises.get(currentExercise);
+        exerciseType.setText(exercise.getExerciseType());
+        exerciseName.setText(exercise.getExerciseName());
+        exerciseImage.setImageResource(exercise.getImageLink());
+        timer.setText(exercise.getExerciseDuration().toString());
+
+        //updateTimer();
+
+        startstop();
+
+
 
     }
 
@@ -60,19 +93,36 @@ public class ExerciseActivity extends AppCompatActivity {
         }
     }
 
+
     public void startTimer() {
+
+        Exercise exercise = exercises.get(currentExercise);
+        exerciseType.setText(exercise.getExerciseType());
+        exerciseName.setText(exercise.getExerciseName());
+        exerciseImage.setImageResource(exercise.getImageLink());
+        timer.setText(exercise.getExerciseDuration().toString());
+        timeLeftinMills = exercise.getExerciseDuration()*1000;
+
+        progress = exercise.getExerciseDuration();
+
         countDownTimer = new CountDownTimer(timeLeftinMills, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                timeLeftinMills = millisUntilFinished;
-                updateTimer();
+               //long secsLeft = (timeLeftinMills - progress*1000)/1000;
+               progress--;
+               timer.setText(progress.toString());
 
             }
 
             @Override
             public void onFinish() {
-                Intent intent2 = new Intent(ExerciseActivity.this,TimedBreak.class);
-                startActivity(intent2);
+                currentExercise++;
+                if (currentExercise < exercises.size()) {
+                    startTimer();
+                } else {
+                    Intent intent2 = new Intent(ExerciseActivity.this,EndActivity.class);
+                    startActivity(intent2);
+                }
 
             }
         }.start();
