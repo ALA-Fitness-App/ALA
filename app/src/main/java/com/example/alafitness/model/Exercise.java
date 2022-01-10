@@ -5,10 +5,10 @@ public class Exercise {
     private String exerciseName;
     private String exerciseType;
     private int imageLink;
-    private int exerciseDuration;
+    private Long exerciseDuration;
 
 
-    public Exercise(String exerciseName, String exerciseType, int imageLink, int exerciseDuration) {
+    public Exercise(String exerciseName, String exerciseType, int imageLink, Long exerciseDuration) {
         this.exerciseName = exerciseName;
         this.exerciseType = exerciseType;
         this.imageLink = imageLink;
@@ -28,7 +28,7 @@ public class Exercise {
         return imageLink;
     }
 
-    public int getExerciseDuration() {
+    public Long getExerciseDuration() {
         return exerciseDuration;
     }
 }

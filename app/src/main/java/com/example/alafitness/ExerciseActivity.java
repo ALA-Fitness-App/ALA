@@ -23,7 +23,7 @@ public class ExerciseActivity extends AppCompatActivity {
     private TextView timer;
     private TextView exerciseName;
     private ImageView exerciseImage;
-    int progress = 0;
+    private Long progress;
 
 
     private TextView startTimerView;
@@ -42,6 +42,8 @@ public class ExerciseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //startTimer();
         setContentView(R.layout.activity_exercise);
+
+
 
         exercises = Constants.getExercises();
         exerciseType = findViewById(R.id.tvType);
@@ -69,7 +71,17 @@ public class ExerciseActivity extends AppCompatActivity {
             }
         });
 
-        updateTimer();
+        Exercise exercise = exercises.get(currentExercise);
+        exerciseType.setText(exercise.getExerciseType());
+        exerciseName.setText(exercise.getExerciseName());
+        exerciseImage.setImageResource(exercise.getImageLink());
+        timer.setText(exercise.getExerciseDuration().toString());
+
+        //updateTimer();
+
+        startstop();
+
+
 
     }
 
@@ -88,16 +100,17 @@ public class ExerciseActivity extends AppCompatActivity {
         exerciseType.setText(exercise.getExerciseType());
         exerciseName.setText(exercise.getExerciseName());
         exerciseImage.setImageResource(exercise.getImageLink());
-        timer.setText(((Integer) exercise.getExerciseDuration()).toString());
-        timeLeftinMills = exercise.getExerciseDuration();
+        timer.setText(exercise.getExerciseDuration().toString());
+        timeLeftinMills = exercise.getExerciseDuration()*1000;
 
+        progress = exercise.getExerciseDuration();
 
         countDownTimer = new CountDownTimer(timeLeftinMills, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-               long secsLeft = (timeLeftinMills - progress*1000)/1000;
-               progress +=1000;
-               timer.setText(((Long)secsLeft).toString());
+               //long secsLeft = (timeLeftinMills - progress*1000)/1000;
+               progress--;
+               timer.setText(progress.toString());
 
             }
 
