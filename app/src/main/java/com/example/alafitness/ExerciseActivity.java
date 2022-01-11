@@ -16,8 +16,9 @@ import android.widget.TextView;
 import com.example.alafitness.model.Constants;
 import com.example.alafitness.model.Exercise;
 
+
 import java.net.URI;
-import java.net.URL;
+
 import java.util.List;
 
 public class ExerciseActivity extends AppCompatActivity {
@@ -56,7 +57,6 @@ public class ExerciseActivity extends AppCompatActivity {
         timer = findViewById(R.id.tvTimer);
         exerciseName = findViewById(R.id.ExerciseText);
         exerciseImage = findViewById(R.id.ivExerciseImage);
-
 
 
         nextBtn = (Button) findViewById(R.id.next_Button);
@@ -138,6 +138,7 @@ public class ExerciseActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
 
+
                 //sound
                 try {
 
@@ -158,7 +159,6 @@ public class ExerciseActivity extends AppCompatActivity {
                     Intent intent2 = new Intent(ExerciseActivity.this,EndActivity.class);
                     startActivity(intent2);
                 }
-
 
             }
         }.start();
