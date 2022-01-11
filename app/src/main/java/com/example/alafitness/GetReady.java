@@ -3,6 +3,8 @@ package com.example.alafitness;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -20,6 +22,8 @@ public class GetReady extends AppCompatActivity {
     private long timeLeftinMills = 10000; // 10 seconds
     private boolean timerRunning;
 
+    private MediaPlayer player;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +34,7 @@ public class GetReady extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(GetReady.this,ExerciseActivity.class);
+                Intent intent2 = new Intent(GetReady.this, ExerciseActivity.class);
                 startActivity(intent2);
             }
         });
@@ -70,7 +74,7 @@ public class GetReady extends AppCompatActivity {
             @Override
             public void onFinish() {
 
-                Intent intent2 = new Intent(GetReady.this,ExerciseActivity.class);
+                Intent intent2 = new Intent(GetReady.this, ExerciseActivity.class);
                 startActivity(intent2);
 
             }
@@ -89,6 +93,20 @@ public class GetReady extends AppCompatActivity {
     public void updateTimer() {
         int minutes = (int) timeLeftinMills / 60000;
         int seconds = (int) timeLeftinMills % 60000 / 1000;
+
+        if (seconds == 3) {
+            try {
+
+                Uri sound = Uri.parse("android.resource://com.example.alafitness/" + R.raw.beep_ex);
+                player = MediaPlayer.create(getApplicationContext(), sound);
+                player.setLooping(false);
+                player.start();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
 
         String timeLeftText;
         timeLeftText = "" + minutes;
