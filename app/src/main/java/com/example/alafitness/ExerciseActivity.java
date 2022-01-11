@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -14,6 +16,8 @@ import android.widget.TextView;
 import com.example.alafitness.model.Constants;
 import com.example.alafitness.model.Exercise;
 
+import java.net.URI;
+import java.net.URL;
 import java.util.List;
 
 public class ExerciseActivity extends AppCompatActivity {
@@ -37,6 +41,8 @@ public class ExerciseActivity extends AppCompatActivity {
     private long timeLeftinMills = 10000; // 10 seconds
     private boolean timerRunning;
 
+    private MediaPlayer player;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +56,8 @@ public class ExerciseActivity extends AppCompatActivity {
         timer = findViewById(R.id.tvTimer);
         exerciseName = findViewById(R.id.ExerciseText);
         exerciseImage = findViewById(R.id.ivExerciseImage);
+
+
 
         nextBtn = (Button) findViewById(R.id.next_Button);
         nextBtn.setOnClickListener(new View.OnClickListener() {
@@ -112,10 +120,37 @@ public class ExerciseActivity extends AppCompatActivity {
                progress--;
                timer.setText(progress.toString());
 
-            }
+               if (progress==3 & exercise.getExerciseType().equals("Break")) {
+
+                   try {
+
+                       Uri sound = Uri.parse("android.resource://com.example.alafitness/" + R.raw.beep_ex);
+                       player = MediaPlayer.create(getApplicationContext(), sound);
+                       player.setLooping(false);
+                       player.start();
+
+                   }catch (Exception e) {
+                       e.printStackTrace();
+                   }}
+               }
+
 
             @Override
             public void onFinish() {
+
+                //sound
+                try {
+
+                    Uri sound = Uri.parse("android.resource://com.example.alafitness/" + R.raw.beep);
+                    player = MediaPlayer.create(getApplicationContext(), sound);
+                    player.setLooping(false);
+                    player.start();
+
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
                 currentExercise++;
                 if (currentExercise < exercises.size()) {
                     startTimer();
@@ -123,6 +158,7 @@ public class ExerciseActivity extends AppCompatActivity {
                     Intent intent2 = new Intent(ExerciseActivity.this,EndActivity.class);
                     startActivity(intent2);
                 }
+
 
             }
         }.start();
