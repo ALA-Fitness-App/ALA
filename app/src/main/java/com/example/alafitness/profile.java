@@ -24,7 +24,7 @@ public class profile extends AppCompatActivity {
         expressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(profile.this,GetReady.class);
+                Intent intent2 = new Intent(profile.this,ExerciseActivity.class);
                 startActivity(intent2);
             }
         });

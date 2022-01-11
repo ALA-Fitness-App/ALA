@@ -106,12 +106,20 @@ public class ExerciseActivity extends AppCompatActivity {
 
         Exercise exercise = exercises.get(currentExercise);
         exerciseType.setText(exercise.getExerciseType());
-        exerciseName.setText(exercise.getExerciseName());
+
+        if (exercise.getExerciseType().equals("Break") || exercise.getExerciseType().equals("Get ready!")) {
+            exerciseName.setText("Next up: " + exercises.get(currentExercise+1).getExerciseName());
+        } else {
+            exerciseName.setText(exercise.getExerciseName());
+        }
+
         exerciseImage.setImageResource(exercise.getImageLink());
         timer.setText(exercise.getExerciseDuration().toString());
         timeLeftinMills = exercise.getExerciseDuration()*1000;
 
         progress = exercise.getExerciseDuration();
+
+
 
         countDownTimer = new CountDownTimer(timeLeftinMills, 1000) {
             @Override
@@ -120,7 +128,7 @@ public class ExerciseActivity extends AppCompatActivity {
                progress--;
                timer.setText(progress.toString());
 
-               if (progress==3 & exercise.getExerciseType().equals("Break")) {
+               if (progress<=3 & (exercise.getExerciseType().equals("Break") || exercise.getExerciseType().equals("Get ready!"))) {
 
                    try {
 
