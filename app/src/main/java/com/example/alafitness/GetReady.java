@@ -7,11 +7,15 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class GetReady extends AppCompatActivity {
+import java.util.Locale;
+
+public class GetReady extends AppCompatActivity implements TextToSpeech.OnInitListener {
     private Button nextBtn;
 
     private TextView startTimerView;
@@ -24,10 +28,14 @@ public class GetReady extends AppCompatActivity {
 
     private MediaPlayer player;
 
+    private TextToSpeech tts;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_ready);
+
+        tts = new TextToSpeech(this, this);
 
         nextBtn = (Button) findViewById(R.id.next_Button);
 
@@ -95,7 +103,7 @@ public class GetReady extends AppCompatActivity {
         int seconds = (int) timeLeftinMills % 60000 / 1000;
 
         if (seconds == 3) {
-            try {
+            /*try {
 
                 Uri sound = Uri.parse("android.resource://com.example.alafitness/" + R.raw.beep_ex);
                 player = MediaPlayer.create(getApplicationContext(), sound);
@@ -104,7 +112,9 @@ public class GetReady extends AppCompatActivity {
 
             } catch (Exception e) {
                 e.printStackTrace();
-            }
+            }*/
+
+            readItOut("Get Ready");
         }
 
 
@@ -117,4 +127,19 @@ public class GetReady extends AppCompatActivity {
         startTimerView.setText(timeLeftText);
     }
 
+    @Override
+    public void onInit(int i) {
+        if (i == TextToSpeech.SUCCESS) {
+            int result = tts.setLanguage(Locale.ENGLISH);
+
+            if (result== TextToSpeech.LANG_MISSING_DATA || result== TextToSpeech.LANG_NOT_SUPPORTED) {
+                Log.e("tts", "Specified language not supported");
+            }
+        }else {
+            Log.e("tts", "Initialization failed");
+        }
+    }
+    private void readItOut(String text) {
+        tts.speak(text, TextToSpeech.QUEUE_ADD, null, "");
+    }
 }
