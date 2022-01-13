@@ -8,9 +8,11 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.alafitness.model.Constants;
@@ -29,16 +31,13 @@ public class ExerciseActivity extends AppCompatActivity {
     private TextView exerciseName;
     private ImageView exerciseImage;
     private Long progress;
-
-
+    private ProgressBar timerBar;
+    private int timerBarProgress = 0;
     private TextView startTimerView;
     private Button startPauseButton;
-
     private List<Exercise> exercises;
     int currentExercise = 0;
-
     private CountDownTimer countDownTimer;
-
     private long timeLeftinMills = 10000; // 10 seconds
     private boolean timerRunning;
 
@@ -50,14 +49,12 @@ public class ExerciseActivity extends AppCompatActivity {
         //startTimer();
         setContentView(R.layout.activity_exercise);
 
-
-
         exercises = Constants.getExercises();
         exerciseType = findViewById(R.id.tvType);
         timer = findViewById(R.id.tvTimer);
         exerciseName = findViewById(R.id.ExerciseText);
         exerciseImage = findViewById(R.id.ivExerciseImage);
-
+        timerBar = findViewById(R.id.progressBar);
 
         nextBtn = (Button) findViewById(R.id.next_Button);
         nextBtn.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +64,6 @@ public class ExerciseActivity extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
-
 
         startTimerView = findViewById(R.id.timer_View);
         startPauseButton = findViewById(R.id.pause_Button);
@@ -88,9 +84,6 @@ public class ExerciseActivity extends AppCompatActivity {
         //updateTimer();
 
         startstop();
-
-
-
     }
 
     public void startstop() {
@@ -116,10 +109,8 @@ public class ExerciseActivity extends AppCompatActivity {
         exerciseImage.setImageResource(exercise.getImageLink());
         timer.setText(exercise.getExerciseDuration().toString());
         timeLeftinMills = exercise.getExerciseDuration()*1000;
-
         progress = exercise.getExerciseDuration();
-
-
+        timerBarProgress = 50;
 
         countDownTimer = new CountDownTimer(timeLeftinMills, 1000) {
             @Override
@@ -127,6 +118,16 @@ public class ExerciseActivity extends AppCompatActivity {
                //long secsLeft = (timeLeftinMills - progress*1000)/1000;
                progress--;
                timer.setText(progress.toString());
+
+                timerBarProgress = progress.intValue() * 8;
+
+               //timerBarProgress = exercise.getExerciseDuration().intValue();
+//               updateTimerBar();
+//
+//               if (timerBarProgress >=10) {
+//                    timerBarProgress -= 10;
+//                    updateTimerBar();
+//               }
 
                if (progress<=3 & (exercise.getExerciseType().equals("Break") || exercise.getExerciseType().equals("Get ready!"))) {
 
@@ -145,7 +146,7 @@ public class ExerciseActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-
+                timerBar.setProgress(0);
 
                 //sound
                 try {
@@ -192,6 +193,11 @@ public class ExerciseActivity extends AppCompatActivity {
         timeLeftText += seconds;
 
         startTimerView.setText(timeLeftText);
+    }
+
+    public void updateTimerBar() {
+        timerBar.setProgress(timerBarProgress);
+        timerBar.incrementProgressBy(10);
     }
 
 }
