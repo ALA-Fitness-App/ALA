@@ -22,17 +22,19 @@
 
     <TextView
         android:id="@+id/tvTimer"
-        android:layout_width="120dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="10pt"
+        android:layout_width="100dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="32dp"
         android:gravity="center"
-        tools:text="00:10"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/ivExerciseImage"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvType" />
+        app:layout_constraintTop_toBottomOf="@+id/tvType"
+        tools:text="00:10" />
 
     <ImageView
         android:id="@+id/ivExerciseImage"
@@ -92,6 +94,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/pause_Button" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="100dp"
+        android:layout_height="102dp"
+        android:indeterminateOnly="false"
+        android:max="100"
+        android:progressDrawable="@drawable/cicrle"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTimer"
+        app:layout_constraintEnd_toEndOf="@+id/tvTimer"
+        app:layout_constraintStart_toStartOf="@+id/tvTimer"
+        app:layout_constraintTop_toTopOf="@+id/tvTimer"
+        tools:progress="60" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
