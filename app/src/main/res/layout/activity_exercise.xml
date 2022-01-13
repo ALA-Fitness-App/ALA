@@ -100,12 +100,13 @@
         android:layout_width="100dp"
         android:layout_height="102dp"
         android:indeterminateOnly="false"
-        tools:progress="60"
+        android:max="100"
         android:progressDrawable="@drawable/cicrle"
         app:layout_constraintBottom_toBottomOf="@+id/tvTimer"
         app:layout_constraintEnd_toEndOf="@+id/tvTimer"
         app:layout_constraintStart_toStartOf="@+id/tvTimer"
-        app:layout_constraintTop_toTopOf="@+id/tvTimer" />
+        app:layout_constraintTop_toTopOf="@+id/tvTimer"
+        tools:progress="60" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

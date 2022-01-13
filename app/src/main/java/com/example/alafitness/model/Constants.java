@@ -11,7 +11,7 @@ public class Constants {
 
         ArrayList<Exercise> exercisesList = new ArrayList<Exercise>();
 
-        exercisesList.add(new Exercise("Get ready!", "Get ready!", R.drawable.alafitness, 11l));
+        exercisesList.add(new Exercise("Get ready!", "Get ready!", R.drawable.alafitness, 16l));
         exercisesList.add(new Exercise("Plank", "Core", R.drawable.plank, 11l));
         exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 11l));
         exercisesList.add(new Exercise("Squat", "Legs", R.drawable.squat, 11l));

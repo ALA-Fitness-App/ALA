@@ -32,7 +32,6 @@ public class ExerciseActivity extends AppCompatActivity {
     private ImageView exerciseImage;
     private Long progress;
     private ProgressBar timerBar;
-    private int timerBarProgress = 0;
     private TextView startTimerView;
     private Button startPauseButton;
     private List<Exercise> exercises;
@@ -110,7 +109,7 @@ public class ExerciseActivity extends AppCompatActivity {
         timer.setText(exercise.getExerciseDuration().toString());
         timeLeftinMills = exercise.getExerciseDuration()*1000;
         progress = exercise.getExerciseDuration();
-        timerBarProgress = 50;
+        timerBar.setProgress(progress.intValue() * 10);
 
         countDownTimer = new CountDownTimer(timeLeftinMills, 1000) {
             @Override
@@ -119,15 +118,7 @@ public class ExerciseActivity extends AppCompatActivity {
                progress--;
                timer.setText(progress.toString());
 
-                timerBarProgress = progress.intValue() * 8;
-
-               //timerBarProgress = exercise.getExerciseDuration().intValue();
-//               updateTimerBar();
-//
-//               if (timerBarProgress >=10) {
-//                    timerBarProgress -= 10;
-//                    updateTimerBar();
-//               }
+                timerBar.setProgress((progress.intValue() * 100) / (exercise.getExerciseDuration().intValue()));
 
                if (progress<=3 & (exercise.getExerciseType().equals("Break") || exercise.getExerciseType().equals("Get ready!"))) {
 
@@ -195,9 +186,14 @@ public class ExerciseActivity extends AppCompatActivity {
         startTimerView.setText(timeLeftText);
     }
 
-    public void updateTimerBar() {
-        timerBar.setProgress(timerBarProgress);
-        timerBar.incrementProgressBy(10);
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+            countDownTimer = null;
+        }
+        player.stop();
+        // tts.stop();
     }
-
 }
