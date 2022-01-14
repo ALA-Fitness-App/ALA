@@ -4,21 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/concrete"
     tools:context=".ExerciseActivity">
 
     <TextView
         android:id="@+id/tvType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="EXPRESS"
-        android:textSize="24sp"
-        android:gravity="center"
         android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@id/tvTimer"
+        android:gravity="center"
+        android:text="EXPRESS"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.09" />
+        app:layout_constraintStart_toStartOf="@id/tvTimer"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvTimer"
@@ -54,8 +56,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="150dp"
         android:text="Plank"
+        android:textColor="@color/accent_dark"
+        android:textColorHint="#0C0C0C"
+        android:textColorLink="@color/accent_dark"
         android:textSize="35dp"
-        android:textColor="@color/design_default_color_primary_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
