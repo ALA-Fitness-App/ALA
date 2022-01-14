@@ -11,51 +11,52 @@ public class Constants {
 
         ArrayList<Exercise> exercisesList = new ArrayList<Exercise>();
 
-        exercisesList.add(new Exercise("Get ready!", "Get ready!", R.drawable.rest, 6l));
-        exercisesList.add(new Exercise("Plank", "Core", R.drawable.plank, 11l));
-        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 6l));
-        exercisesList.add(new Exercise("Squat", "Legs", R.drawable.squats, 11l));
-//        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 6l));
-//        exercisesList.add(new Exercise("Push up", "Arms", R.drawable.pushups, 11l));
-//        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 11l));
-//        exercisesList.add(new Exercise("Jumping jacks", "Cardio", R.drawable.jumps, 11l));
-//        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 11l));
-//        exercisesList.add(new Exercise("Toe Taps", "Core", R.drawable.toetap, 11l));
-//        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 11l));
-//        exercisesList.add(new Exercise("Glute bridge", "Legs", R.drawable.glutebridge, 11l));
-//        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 11l));
-//        exercisesList.add(new Exercise("Commando", "Arms", R.drawable.commando, 11l));
-//        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 11l));
-//        exercisesList.add(new Exercise("Burpee", "Cardio", R.drawable.burpee, 11l));
-//        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 11l));
-//        exercisesList.add(new Exercise("Flutters", "Core", R.drawable.flutters, 11l));
-//        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 11l));
-//        exercisesList.add(new Exercise("Lateral lunge", "Legs", R.drawable.laterallunge, 11l));
-//        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 11l));
-//        exercisesList.add(new Exercise("Plank dips", "Arms", R.drawable.plankdips, 11l));
-//        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 11l));
-//        exercisesList.add(new Exercise("High knees", "Cardio", R.drawable.highknees, 11l));
-//        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 11l));
-//        exercisesList.add(new Exercise("Single arm superman", "Core", R.drawable.singlearmsuperman, 11l));
-//        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 11l));
-//        exercisesList.add(new Exercise("Walking lunge", "Legs", R.drawable.walkinglunge, 11l));
-//        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 11l));
-//        exercisesList.add(new Exercise("Shoulder tap", "Arms", R.drawable.shouldertap, 11l));
-//        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 11l));
-//        exercisesList.add(new Exercise("Mountain climber", "Cardio", R.drawable.mountainclimbers, 11l));
-//        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 11l));
-//        exercisesList.add(new Exercise("Ab-bikes", "Core", R.drawable.ab_bikes, 11l));
-//        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 11l));
-//        exercisesList.add(new Exercise("Squat jump", "Legs", R.drawable.squatjump, 11l));
-//        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 11l));
-//        exercisesList.add(new Exercise("Lay down push-up", "Arms", R.drawable.laydownpushup, 11l));
-//        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 11l));
-//        exercisesList.add(new Exercise("Half burpee", "Cardio", R.drawable.halfburpee, 11l));
-//        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 11l));
-//        exercisesList.add(new Exercise("Heel tap", "Core", R.drawable.heeltap, 11l));
-//        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 11l));
-//        exercisesList.add(new Exercise("Cross body mountain climbers", "Cardio", R.drawable.crossbody_mountclimber, 11l));
+        exercisesList.add(new Exercise("Get ready!", ExerciseType.BREAK, R.drawable.rest));
+        exercisesList.add(new Exercise("Plank", ExerciseType.CORE, R.drawable.plank));
+        exercisesList.add(new Exercise("Break", ExerciseType.BREAK, R.drawable.rest));
+        exercisesList.add(new Exercise("Squat", ExerciseType.LEGS, R.drawable.squats));
+        exercisesList.add(new Exercise("Push up", ExerciseType.ARMS, R.drawable.pushups));
+        exercisesList.add(new Exercise("Jumping jacks", ExerciseType.CARDIO, R.drawable.jumps));
+        exercisesList.add(new Exercise("Toe Taps", ExerciseType.CORE, R.drawable.toetap));
+        exercisesList.add(new Exercise("Glute bridge", ExerciseType.LEGS, R.drawable.glutebridge));
+        exercisesList.add(new Exercise("Commando", ExerciseType.ARMS, R.drawable.commando));
+        exercisesList.add(new Exercise("Burpee", ExerciseType.CARDIO, R.drawable.burpee));
+        exercisesList.add(new Exercise("Flutters", ExerciseType.CORE, R.drawable.flutters));
+        exercisesList.add(new Exercise("Lateral lunge", ExerciseType.LEGS, R.drawable.laterallunge));
+        exercisesList.add(new Exercise("Plank dips", ExerciseType.ARMS, R.drawable.plankdips));
+        exercisesList.add(new Exercise("High knees", ExerciseType.CARDIO, R.drawable.highknees));
+        exercisesList.add(new Exercise("Single arm superman", ExerciseType.CORE, R.drawable.singlearmsuperman));
+        exercisesList.add(new Exercise("Walking lunge", ExerciseType.LEGS, R.drawable.walkinglunge));
+        exercisesList.add(new Exercise("Shoulder tap", ExerciseType.ARMS, R.drawable.shouldertap));
+        exercisesList.add(new Exercise("Mountain climber", ExerciseType.CARDIO, R.drawable.mountainclimbers));
+        exercisesList.add(new Exercise("Ab-bikes", ExerciseType.CORE, R.drawable.ab_bikes));
+        exercisesList.add(new Exercise("Squat jump", ExerciseType.LEGS, R.drawable.squatjump));
+        exercisesList.add(new Exercise("Lay down push-up", ExerciseType.ARMS, R.drawable.laydownpushup));
+        exercisesList.add(new Exercise("Half burpee", ExerciseType.CARDIO, R.drawable.halfburpee));
+        exercisesList.add(new Exercise("Heel tap", ExerciseType.CORE, R.drawable.heeltap));      
+        exercisesList.add(new Exercise("Cross body mountain climbers", ExerciseType.CARDIO, R.drawable.crossbody_mountclimber));
 
         return exercisesList;
+    }
+
+    public static Exercise getExercise(String exerciseName) {
+
+        for ( Exercise exercise : getExercises() ) {
+            exercise.getExerciseName();
+
+            if (exerciseName.equals(exercise.getExerciseName())) {
+                return exercise;
+            }
+        }
+        return null;
+    }
+
+    public static List<TimedExercise> getTimedExercises() {
+
+        ArrayList<TimedExercise> timedExercisesList = new ArrayList<>();
+
+        timedExercisesList.add( new TimedExercise(getExercise("Get ready!"), 16l));
+
+        return timedExercisesList;
     }
 }

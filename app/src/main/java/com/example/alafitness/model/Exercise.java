@@ -3,24 +3,21 @@ package com.example.alafitness.model;
 public class Exercise {
 
     private String exerciseName;
-    private String exerciseType;
+    private ExerciseType exerciseType;
     private int imageLink;
-    private Long exerciseDuration;
 
 
-    public Exercise(String exerciseName, String exerciseType, int imageLink, Long exerciseDuration) {
+    public Exercise(String exerciseName, ExerciseType exerciseType, int imageLink) {
         this.exerciseName = exerciseName;
         this.exerciseType = exerciseType;
         this.imageLink = imageLink;
-        this.exerciseDuration = exerciseDuration;
-
-    }
+            }
 
     public String getExerciseName() {
         return exerciseName;
     }
 
-    public String getExerciseType() {
+    public ExerciseType getExerciseType() {
         return exerciseType;
     }
 
@@ -28,7 +25,5 @@ public class Exercise {
         return imageLink;
     }
 
-    public Long getExerciseDuration() {
-        return exerciseDuration;
-    }
+
 }
