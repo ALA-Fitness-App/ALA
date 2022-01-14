@@ -13,8 +13,8 @@ public class Constants {
 
         exercisesList.add(new Exercise("Get ready!", "Get ready!", R.drawable.rest, 6l));
         exercisesList.add(new Exercise("Plank", "Core", R.drawable.plank, 11l));
-//        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 6l));
-//        exercisesList.add(new Exercise("Squat", "Legs", R.drawable.squats, 11l));
+        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 6l));
+        exercisesList.add(new Exercise("Squat", "Legs", R.drawable.squats, 11l));
 //        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 6l));
 //        exercisesList.add(new Exercise("Push up", "Arms", R.drawable.pushups, 11l));
 //        exercisesList.add(new Exercise("Break", "Break", R.drawable.rest, 11l));
