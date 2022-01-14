@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_background"
+    android:background="@drawable/concrete"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -113,7 +113,8 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:text="@string/sign_up_link"
-        android:textColor="#000000"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/accent_dark"
         android:focusable="true" />
     </LinearLayout>
 
@@ -144,7 +145,8 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:text="@string/sign_in"
-            android:textColor="#000000"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/accent_dark"
             android:focusable="true" />
     </LinearLayout>
 
