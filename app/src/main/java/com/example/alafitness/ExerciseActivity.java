@@ -39,7 +39,7 @@ public class ExerciseActivity extends AppCompatActivity {
     private CountDownTimer countDownTimer;
     private long timeLeftinMills = 10000; // 10 seconds
     private boolean timerRunning;
-
+    //String user;
     private MediaPlayer player;
 
     @Override
@@ -47,6 +47,9 @@ public class ExerciseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //startTimer();
         setContentView(R.layout.activity_exercise);
+
+        Intent intent = getIntent();
+        //user = intent.getStringExtra("username");
 
         exercises = Constants.getExercises();
         exerciseType = findViewById(R.id.tvType);
@@ -157,6 +160,7 @@ public class ExerciseActivity extends AppCompatActivity {
                     startTimer();
                 } else {
                     Intent intent2 = new Intent(ExerciseActivity.this,EndActivity.class);
+                    //intent2.putExtra("username", user);
                     startActivity(intent2);
                 }
 
