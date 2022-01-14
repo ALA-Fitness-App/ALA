@@ -115,5 +115,20 @@
         app:layout_constraintVertical_bias="0.731"
         tools:progress="60" />
 
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="178dp"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="176dp"
+        android:layout_marginBottom="4dp"
+        android:text="TextView"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ExerciseText" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
