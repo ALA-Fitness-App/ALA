@@ -43,6 +43,7 @@ public class DemoExerciseActivity extends AppCompatActivity implements TextToSpe
     private MediaPlayer player;
     TimedExercise timedExercise;
     private TextToSpeech textToSpeech;
+    private TextView workoutType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class DemoExerciseActivity extends AppCompatActivity implements TextToSpe
         exerciseName = findViewById(R.id.ExerciseText);
         exerciseImage = findViewById(R.id.ivExerciseImage);
         timerBar = findViewById(R.id.progressBar);
+        workoutType = findViewById(R.id.tvWorkoutType);
 
         nextBtn = (Button) findViewById(R.id.next_Button);
         nextBtn.setOnClickListener(new View.OnClickListener() {
@@ -127,6 +129,7 @@ public class DemoExerciseActivity extends AppCompatActivity implements TextToSpe
         timeLeftinMills = timedExercise.getDuration()*1000;
         progress = timedExercise.getDuration();
         timerBar.setProgress(progress.intValue() * 10);
+        workoutType.setText("DEMO:");
 
         countDownTimer = new CountDownTimer(timeLeftinMills, 1000) {
             @Override
@@ -143,16 +146,6 @@ public class DemoExerciseActivity extends AppCompatActivity implements TextToSpe
                         player = MediaPlayer.create(getApplicationContext(), sound);
                         player.setLooping(false);
                         player.start();
-                    }catch (Exception e) {
-                        e.printStackTrace();
-                    }} else if (progress == 0 && timedExercise.getType().equals(ExerciseType.BREAK)) {
-                    try {
-
-                        Uri sound = Uri.parse("android.resource://com.example.alafitness/" + R.raw.on_break_end);
-                        player = MediaPlayer.create(getApplicationContext(), sound);
-                        player.setLooping(false);
-                        player.start();
-
                     }catch (Exception e) {
                         e.printStackTrace();
                     }
