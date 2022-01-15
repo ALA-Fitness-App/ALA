@@ -46,6 +46,7 @@ public class ExpressExerciseActivity extends AppCompatActivity implements TextTo
     private MediaPlayer player;
     TimedExercise timedExercise;
     private TextToSpeech textToSpeech;
+    private TextView workoutType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,7 @@ public class ExpressExerciseActivity extends AppCompatActivity implements TextTo
         exerciseName = findViewById(R.id.ExerciseText);
         exerciseImage = findViewById(R.id.ivExerciseImage);
         timerBar = findViewById(R.id.progressBar);
+        workoutType = findViewById(R.id.tvWorkoutType);
 
         nextBtn = (Button) findViewById(R.id.next_Button);
         nextBtn.setOnClickListener(new View.OnClickListener() {
@@ -130,6 +132,7 @@ public class ExpressExerciseActivity extends AppCompatActivity implements TextTo
         timeLeftinMills = timedExercise.getDuration()*1000;
         progress = timedExercise.getDuration();
         timerBar.setProgress(progress.intValue() * 10);
+        workoutType.setText("EXPRESS:");
 
         countDownTimer = new CountDownTimer(timeLeftinMills, 1000) {
             @Override
@@ -139,11 +142,11 @@ public class ExpressExerciseActivity extends AppCompatActivity implements TextTo
 
                 timerBar.setProgress((progress.intValue() * 100) / (timedExercise.getDuration().intValue()));
 
-               if (progress<=3 & (timedExercise.getType().equals(ExerciseType.BREAK))) {
+               if (progress<=3 && progress>0 && timedExercise.getType().equals(ExerciseType.BREAK)) {
 
                    try {
 
-                       Uri sound = Uri.parse("android.resource://com.example.alafitness/" + R.raw.beep_ex);
+                       Uri sound = Uri.parse("android.resource://com.example.alafitness/" + R.raw.countdown);
                        player = MediaPlayer.create(getApplicationContext(), sound);
                        player.setLooping(false);
                        player.start();
@@ -158,18 +161,6 @@ public class ExpressExerciseActivity extends AppCompatActivity implements TextTo
             public void onFinish() {
                 timerBar.setProgress(0);
 
-                //sound
-                try {
-
-                    Uri sound = Uri.parse("android.resource://com.example.alafitness/" + R.raw.beep);
-                    player = MediaPlayer.create(getApplicationContext(), sound);
-                    player.setLooping(false);
-                    player.start();
-
-                }catch (Exception e) {
-                    e.printStackTrace();
-                }
-
                 currentExercise++;
                 if (currentExercise < exercises.size()) {
                     startTimer();
@@ -178,7 +169,6 @@ public class ExpressExerciseActivity extends AppCompatActivity implements TextTo
                     intent2.putExtra("username", user);
                     startActivity(intent2);
                 }
-
             }
         }.start();
 

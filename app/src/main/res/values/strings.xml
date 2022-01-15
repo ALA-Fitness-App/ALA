@@ -21,4 +21,10 @@
     <string name="profile_picture">Profile picture</string>
     <string name="pyramid_icon">Pyramid icon</string>
     <string name="express_icon">Express Icon</string>
+    <string name="exercise_type">Exercise Type</string>
+    <string name="plank">Plank</string>
+    <string name="start">START</string>
+    <string name="next">NEXT</string>
+    <string name="wk_type">Wk Type</string>
+    <string name="exxercise_image">exxercise image</string>
 </resources>
