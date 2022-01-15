@@ -1,29 +1,28 @@
 package com.example.alafitness;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
+import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.alafitness.model.Constants;
-import com.example.alafitness.model.Exercise;
-
-
-import java.net.URI;
+import com.example.alafitness.model.ExerciseType;
+import com.example.alafitness.model.TimedExercise;
 
 import java.util.List;
+import java.util.Locale;
 
-public class ExerciseActivity extends AppCompatActivity {
+public class PyramidExerciseActivity extends AppCompatActivity implements TextToSpeech.OnInitListener{
 
     private Button nextBtn;
     private TextView exerciseType;
@@ -34,7 +33,7 @@ public class ExerciseActivity extends AppCompatActivity {
     private ProgressBar timerBar;
     private TextView startTimerView;
     private Button startPauseButton;
-    private List<Exercise> exercises;
+    private List<TimedExercise> exercises;
     int currentExercise = 0;
     private CountDownTimer countDownTimer;
     private long timeLeftinMills = 10000; // 10 seconds
@@ -42,19 +41,21 @@ public class ExerciseActivity extends AppCompatActivity {
     TextView username;
     String user;
     private MediaPlayer player;
+    TimedExercise timedExercise;
+    private TextToSpeech textToSpeech;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //startTimer();
         setContentView(R.layout.activity_exercise);
+        textToSpeech = new TextToSpeech(this, this);
 
         Intent intent = getIntent();
         user = intent.getStringExtra("username");
         username = findViewById(R.id.username);
         username.setText(user + "!");
 
-        exercises = Constants.getExercises();
+        exercises = Constants.getPyramidExercises();
         exerciseType = findViewById(R.id.tvType);
         timer = findViewById(R.id.tvTimer);
         exerciseName = findViewById(R.id.ExerciseText);
@@ -65,7 +66,7 @@ public class ExerciseActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(ExerciseActivity.this,TimedBreak.class);
+                Intent intent2 = new Intent(PyramidExerciseActivity.this,TimedBreak.class);
                 startActivity(intent2);
             }
         });
@@ -80,13 +81,11 @@ public class ExerciseActivity extends AppCompatActivity {
             }
         });
 
-        Exercise exercise = exercises.get(currentExercise);
-        exerciseType.setText(exercise.getExerciseType());
-        exerciseName.setText(exercise.getExerciseName());
-        exerciseImage.setImageResource(exercise.getImageLink());
-        timer.setText(exercise.getExerciseDuration().toString());
-
-        //updateTimer();
+        timedExercise = exercises.get(currentExercise);
+        exerciseType.setText(timedExercise.getType().toString());
+        exerciseName.setText(timedExercise.getName());
+        exerciseImage.setImageResource(timedExercise.getImageLink());
+        timer.setText(timedExercise.getDuration().toString());
 
         startstop();
     }
@@ -95,6 +94,7 @@ public class ExerciseActivity extends AppCompatActivity {
         if (timerRunning) {
             stopTimer();
         } else {
+            // need a method to continue the timer rather than start
             startTimer();
         }
     }
@@ -102,43 +102,53 @@ public class ExerciseActivity extends AppCompatActivity {
 
     public void startTimer() {
 
-        Exercise exercise = exercises.get(currentExercise);
-        exerciseType.setText(exercise.getExerciseType());
+        TimedExercise timedExercise = exercises.get(currentExercise);
 
-        if (exercise.getExerciseType().equals("Break") || exercise.getExerciseType().equals("Get ready!")) {
-            exerciseName.setText("Next up: " + exercises.get(currentExercise+1).getExerciseName());
+        if (timedExercise.getType().equals(ExerciseType.BREAK)) {
+            exerciseType.setText(timedExercise.getName());
+            exerciseName.setText("Next up: " + exercises.get(currentExercise+1).getName());
+            try {
+                readItOut("Next up: " + exercises.get(currentExercise + 1).getName());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
-            exerciseName.setText(exercise.getExerciseName());
+            exerciseType.setText(timedExercise.getType().toString());
+            exerciseName.setText(timedExercise.getName());
+            try {
+                readItOut("Go!");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
-        exerciseImage.setImageResource(exercise.getImageLink());
-        timer.setText(exercise.getExerciseDuration().toString());
-        timeLeftinMills = exercise.getExerciseDuration()*1000;
-        progress = exercise.getExerciseDuration();
+        exerciseImage.setImageResource(timedExercise.getImageLink());
+        timer.setText(timedExercise.getDuration().toString());
+        timeLeftinMills = timedExercise.getDuration()*1000;
+        progress = timedExercise.getDuration();
         timerBar.setProgress(progress.intValue() * 10);
 
         countDownTimer = new CountDownTimer(timeLeftinMills, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-               //long secsLeft = (timeLeftinMills - progress*1000)/1000;
-               progress--;
-               timer.setText(progress.toString());
+                progress--;
+                timer.setText(progress.toString());
 
-                timerBar.setProgress((progress.intValue() * 100) / (exercise.getExerciseDuration().intValue()));
+                timerBar.setProgress((progress.intValue() * 100) / (timedExercise.getDuration().intValue()));
 
-               if (progress<=3 & (exercise.getExerciseType().equals("Break") || exercise.getExerciseType().equals("Get ready!"))) {
+                if (progress<=3 & (timedExercise.getType().equals(ExerciseType.BREAK))) {
 
-                   try {
+                    try {
 
-                       Uri sound = Uri.parse("android.resource://com.example.alafitness/" + R.raw.beep_ex);
-                       player = MediaPlayer.create(getApplicationContext(), sound);
-                       player.setLooping(false);
-                       player.start();
+                        Uri sound = Uri.parse("android.resource://com.example.alafitness/" + R.raw.beep_ex);
+                        player = MediaPlayer.create(getApplicationContext(), sound);
+                        player.setLooping(false);
+                        player.start();
 
-                   }catch (Exception e) {
-                       e.printStackTrace();
-                   }}
-               }
+                    }catch (Exception e) {
+                        e.printStackTrace();
+                    }}
+            }
 
 
             @Override
@@ -157,12 +167,11 @@ public class ExerciseActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-
                 currentExercise++;
                 if (currentExercise < exercises.size()) {
                     startTimer();
                 } else {
-                    Intent intent2 = new Intent(ExerciseActivity.this,EndActivity.class);
+                    Intent intent2 = new Intent(PyramidExerciseActivity.this,EndActivity.class);
                     intent2.putExtra("username", user);
                     startActivity(intent2);
                 }
@@ -180,17 +189,20 @@ public class ExerciseActivity extends AppCompatActivity {
         timerRunning = false;
     }
 
-    public void updateTimer() {
-        int minutes = (int) timeLeftinMills / 60000;
-        int seconds = (int) timeLeftinMills % 60000 / 1000;
+    @Override
+    public void onInit(int i) {
+        if (i == TextToSpeech.SUCCESS) {
+            int result = textToSpeech.setLanguage(Locale.ENGLISH);
 
-        String timeLeftText;
-        timeLeftText = "" + minutes;
-        timeLeftText += ":";
-        if (seconds < 10) timeLeftText += "0";
-        timeLeftText += seconds;
-
-        startTimerView.setText(timeLeftText);
+            if (result== TextToSpeech.LANG_MISSING_DATA || result==TextToSpeech.LANG_NOT_SUPPORTED) {
+                Log.e("tts", "Specified language not supported");
+            }
+        }else {
+            Log.e("tts", "Initialization failed");
+        }
+    }
+    private void readItOut(String text) {
+        textToSpeech.speak(text, TextToSpeech.QUEUE_ADD, null, "");
     }
 
     @Override

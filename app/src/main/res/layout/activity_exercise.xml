@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/concrete"
-    tools:context=".ExerciseActivity">
+    tools:context=".ExpressExerciseActivity">
 
     <TextView
         android:id="@+id/tvType"
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:text="Plank"
         android:textColor="@color/white"
-        android:textSize="35dp"
+        android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/next_Button"
         app:layout_constraintEnd_toEndOf="parent"

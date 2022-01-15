@@ -6,5 +6,5 @@ public enum ExerciseType {
     CARDIO,
     LEGS,
     ARMS,
-    BREAK
+    BREAK,
 }

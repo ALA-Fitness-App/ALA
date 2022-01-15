@@ -2,7 +2,6 @@ package com.example.alafitness;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +12,8 @@ import android.widget.TextView;
 public class profile extends AppCompatActivity {
 
     ImageButton expressButton;
+    ImageButton pyramidButton;
+    Button demoButton;
     TextView username;
     String user;
 
@@ -23,19 +24,36 @@ public class profile extends AppCompatActivity {
         Intent intent = getIntent();
         user = intent.getStringExtra("username");
         username = findViewById(R.id.tvUsernameProfile);
-        username.setText(user + "!");
+        username.setText("Hello, " + user + "!");
 
-        expressButton = findViewById(R.id.imageButton2);
+        expressButton = findViewById(R.id.ibExpress);
         expressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(profile.this,ExerciseActivity.class);
+                Intent intent2 = new Intent(profile.this, ExpressExerciseActivity.class);
                 intent2.putExtra("username", user);
                 startActivity(intent2);
             }
         });
 
+        demoButton = findViewById(R.id.bDemo);
+        demoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(profile.this, DemoExerciseActivity.class);
+                intent1.putExtra("username", user);
+                startActivity(intent1);
+            }
+        });
 
-
+        pyramidButton = findViewById(R.id.ibPyramid);
+        pyramidButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent3 = new Intent(profile.this, PyramidExerciseActivity.class);
+                intent3.putExtra("username", user);
+                startActivity(intent3);
+            }
+        });
     }
 }

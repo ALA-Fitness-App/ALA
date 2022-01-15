@@ -21,7 +21,7 @@ public class EndActivity extends AppCompatActivity {
         Intent intent = getIntent();
         user = intent.getStringExtra("username");
         username = findViewById(R.id.username);
-        username.setText(user + "!");
+        username.setText("You did it, " + user + "!");
 
         exitBtn = (Button) findViewById(R.id.exit_Button);
 
