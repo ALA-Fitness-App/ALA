@@ -31,7 +31,7 @@ public class TimedBreak extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(TimedBreak.this,ExerciseActivity.class);
+                Intent intent2 = new Intent(TimedBreak.this, ExpressExerciseActivity.class);
                 startActivity(intent2);
             }
         });
@@ -70,7 +70,7 @@ public class TimedBreak extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                Intent intent2 = new Intent(TimedBreak.this,ExerciseActivity.class);
+                Intent intent2 = new Intent(TimedBreak.this, ExpressExerciseActivity.class);
                 startActivity(intent2);
 
             }

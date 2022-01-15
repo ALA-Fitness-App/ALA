@@ -4,177 +4,182 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/secondary_light"
+    android:background="@drawable/concrete"
     android:orientation="vertical"
     tools:context=".profile">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:background="@color/secondary_background">
+        android:background="@color/accent_light">
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/ivProfilePhoto"
             android:layout_width="136dp"
             android:layout_height="134dp"
+            android:layout_marginStart="40dp"
             android:background="@color/white"
+            android:contentDescription="@string/profile_picture"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.19"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.496"
-            app:srcCompat="@drawable/fit" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="59dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="83dp"
-            android:layout_marginBottom="31dp"
-            android:text="Hello, "
-            android:textSize="36sp"
-            app:layout_constraintBottom_toTopOf="@+id/imageView3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:srcCompat="@drawable/fit" />
 
         <TextView
             android:id="@+id/tvUsernameProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="28dp"
             android:layout_marginBottom="31dp"
             android:text="username"
+            android:textColor="@color/white"
             android:textSize="36sp"
-            app:layout_constraintBottom_toTopOf="@+id/imageView3"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/ivProfilePhoto"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvWorkoutsDone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="46dp"
+            android:layout_marginStart="5dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="23dp"
-            android:text="Workouts done"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView3"
+            android:text="@string/workouts_done"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tvWorkoutsThisWeek"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.827"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/ivProfilePhoto"
+            app:layout_constraintTop_toTopOf="@+id/ivProfilePhoto"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tvWorkoutsThisWeek"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginEnd="98dp"
-            android:layout_marginBottom="24dp"
-            android:text="this week:"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView4"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="92dp"
+            android:text="@string/this_week"
+            android:textColor="@color/white"
+            android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/ivProfilePhoto"
+            app:layout_constraintTop_toBottomOf="@+id/tvWorkoutsDone" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tvWorkoutsTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="151dp"
-            android:layout_marginBottom="16dp"
-            android:text="total:"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView5"
+            android:text="@string/total"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivProfilePhoto"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/ivProfilePhoto"
+            app:layout_constraintTop_toBottomOf="@+id/tvWorkoutsThisWeek"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tvLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="40dp"
             android:layout_marginEnd="83dp"
             android:layout_marginBottom="32dp"
-            android:text="Activ level: Beginner"
-            android:textSize="30sp"
+            android:text="@string/level_beginner"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/ivProfilePhoto"
+            app:layout_constraintVertical_bias="0.755" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/tvWorkoutChoice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="41dp"
         android:layout_marginTop="29dp"
         android:layout_marginEnd="54dp"
         android:layout_marginBottom="27dp"
-        android:text="choose your workout"
-        android:textSize="34sp" />
+        android:text="@string/choose_your_workout"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:ignore="TextContrastCheck" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="337dp">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/ibPyramid"
             android:layout_width="120dp"
             android:layout_height="80dp"
-            android:layout_marginStart="57dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="43dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView6"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+            android:layout_marginStart="40dp"
+            android:backgroundTint="@color/accent_dark"
+            android:clickable="true"
+            android:contentDescription="@string/pyramid_icon"
+            android:focusable="true"
+            android:src="@drawable/pyramid_img"
+            app:layout_constraintBottom_toTopOf="@+id/bDemo"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7"
-            app:srcCompat="@android:drawable/arrow_up_float" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@android:drawable/arrow_up_float"
+            tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/ibExpress"
             android:layout_width="120dp"
             android:layout_height="80dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="70dp"
-            android:layout_marginBottom="16dp"
-            android:onClick="onClick"
-            app:layout_constraintBottom_toTopOf="@+id/textView8"
+            android:layout_marginEnd="40dp"
+            android:backgroundTint="@color/accent_dark"
+            android:clickable="true"
+            android:contentDescription="@string/express_icon"
+            android:focusable="true"
+            android:src="@drawable/express_img"
+            app:layout_constraintBottom_toTopOf="@+id/bDemo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageButton"
-            app:layout_constraintTop_toBottomOf="@+id/textView7"
-            app:srcCompat="@android:drawable/btn_star" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@android:drawable/btn_star"
+            tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
-        <TextView
-            android:id="@+id/textView8"
+        <Button
+            android:id="@+id/bDemo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="51dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="66dp"
-            android:layout_marginBottom="95dp"
-            android:text="Timed Express"
-            android:textSize="18sp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/demo"
+            android:textStyle="bold"
+            android:backgroundTint="@color/accent_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView6"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.456" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -186,7 +191,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="87dp"
-        android:text="Timed pyramid"
+        android:text="@string/timed_pyramid"
         android:textSize="18sp" />
 
 </LinearLayout>

@@ -11,4 +11,14 @@
     <string name="welcome">Welcome to the ALA Fitness! Please create your username and password!</string>
     <string name="sign_in_please">If you already have a username and password, please sign in!</string>
     <string name="new_user">New user?</string>
+    <string name="timed_pyramid">Timed pyramid</string>
+    <string name="demo">DEMO</string>
+    <string name="choose_your_workout">Choose your workout:</string>
+    <string name="workouts_done">Workouts done:</string>
+    <string name="total">total:</string>
+    <string name="this_week">this week:</string>
+    <string name="level_beginner">Level: Beginner</string>
+    <string name="profile_picture">Profile picture</string>
+    <string name="pyramid_icon">Pyramid icon</string>
+    <string name="express_icon">Express Icon</string>
 </resources>

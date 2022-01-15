@@ -29,7 +29,7 @@
             android:textStyle="bold"
             android:text="@string/ala_fitness_name"
             android:textColor="@color/accent_dark"
-            android:textSize="30sp" />
+            android:textSize="40sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -43,7 +43,9 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/username"
-            android:textColor="@color/accent_dark" />
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/username"
@@ -52,6 +54,9 @@
             android:layout_weight="1"
             android:autofillHints="emailAddress"
             android:ems="10"
+            android:backgroundTint="@color/accent_light"
+            android:textStyle="bold"
+            android:textColor="@color/accent_dark"
             android:inputType="textEmailAddress"
             android:textAlignment="center"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -69,7 +74,9 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/password"
-            android:textColor="@color/accent_dark" />
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:textColor="@color/white"/>
 
         <EditText
             android:id="@+id/password"
@@ -77,6 +84,9 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:ems="10"
+            android:backgroundTint="@color/accent_light"
+            android:textStyle="bold"
+            android:textColor="@color/accent_dark"
             android:textAlignment="center"
             tools:ignore="SpeakableTextPresentCheck"
             android:importantForAutofill="no"
@@ -112,7 +122,9 @@
             android:layout_height="match_parent"
             android:gravity="bottom"
             android:text="@string/new_user"
-            android:textColor="@color/accent_dark" />
+            android:textSize="18dp"
+            android:textStyle="italic"
+            android:textColor="@color/white" />
 
 
     </LinearLayout>
