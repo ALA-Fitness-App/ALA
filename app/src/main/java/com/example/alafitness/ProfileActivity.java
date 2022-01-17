@@ -11,6 +11,10 @@ import android.widget.TextView;
 
 import com.example.alafitness.model.Constants;
 
+/**
+ * Class that contains all methods to run the Profile page, child of AppCompatActivity,
+ * Contains inherited methods.
+ */
 public class ProfileActivity extends AppCompatActivity {
 
     ImageButton expressButton;
@@ -19,7 +23,6 @@ public class ProfileActivity extends AppCompatActivity {
     TextView username;
     TextView workoutDuration;
     String user;
-    private int lastWorkoutDuration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
