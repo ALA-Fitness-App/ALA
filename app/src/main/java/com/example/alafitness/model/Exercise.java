@@ -1,5 +1,10 @@
 package com.example.alafitness.model;
 
+/**
+ * Class that describes Exercise object,
+ * has variables to set a duration time for an exercise.
+ * Contains argument constructor and relevant getters.
+ */
 public class Exercise {
 
     private String exerciseName;

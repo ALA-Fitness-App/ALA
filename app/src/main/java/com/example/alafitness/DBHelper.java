@@ -8,6 +8,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+/**
+ * Child class to set up and manipulate SQLite database.
+ * Contains inherited and bespoke methods.
+ */
 public class DBHelper extends SQLiteOpenHelper {
 
     public static final String DBNAME = "Login.db";
@@ -27,6 +31,13 @@ public class DBHelper extends SQLiteOpenHelper {
         MyDB.execSQL("drop Table if exists users");
     }
 
+    /**
+     * Method that inserts data into the database.
+     * @param username - String.
+     * @param password - String.
+     * @return false - new data insertion failed,
+     * @return true - new data has been inserted into the table.
+     */
     public Boolean insertData(String username, String password) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -39,6 +50,12 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    /**
+     * Login method to check the username and if it exists in the database.
+     * @param username - String.
+     * @return true if username exists,
+     * @return false if username does not exist.
+     */
     public Boolean checkUsername(String username) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("Select * from users where username = ?", new String[] {username});
@@ -48,6 +65,13 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
     }
 
+    /**
+     * Login method to check username and password if they exist and match compared to database.
+     * @param username - String.
+     * @param password - String.
+     * @return true if username and password match,
+     * @return false if username and password are a mismatch.
+     */
     public Boolean checkUsernamePassword (String username, String password) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("Select * from users where username = ? and password = ?", new String[] {username, password});

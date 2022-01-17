@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
                     Boolean checkUserPass = DB.checkUsernamePassword(user, pass);
                     if (checkUserPass == true) {
                         Toast.makeText(LoginActivity.this, "Sign in successful!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginActivity.this, profile.class);
+                        Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
                         intent.putExtra("username", user);
                         startActivity(intent);
                     } else {

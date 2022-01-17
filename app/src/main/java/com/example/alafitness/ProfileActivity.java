@@ -9,13 +9,17 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class profile extends AppCompatActivity {
+import com.example.alafitness.model.Constants;
+
+public class ProfileActivity extends AppCompatActivity {
 
     ImageButton expressButton;
     ImageButton pyramidButton;
     Button demoButton;
     TextView username;
+    TextView workoutDuration;
     String user;
+    private int lastWorkoutDuration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +29,14 @@ public class profile extends AppCompatActivity {
         user = intent.getStringExtra("username");
         username = findViewById(R.id.tvUsernameProfile);
         username.setText("Hello, " + user + "!");
+        workoutDuration = findViewById(R.id.tvWorkoutsThisWeek);
+        workoutDuration.setText("this week: " + Constants.totalWorkoutTime(Constants.getDemoExercises()));
 
         expressButton = findViewById(R.id.ibExpress);
         expressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(profile.this, ExpressExerciseActivity.class);
+                Intent intent2 = new Intent(ProfileActivity.this, ExpressExerciseActivity.class);
                 intent2.putExtra("username", user);
                 startActivity(intent2);
             }
@@ -40,7 +46,7 @@ public class profile extends AppCompatActivity {
         demoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(profile.this, DemoExerciseActivity.class);
+                Intent intent1 = new Intent(ProfileActivity.this, DemoExerciseActivity.class);
                 intent1.putExtra("username", user);
                 startActivity(intent1);
             }
@@ -50,7 +56,7 @@ public class profile extends AppCompatActivity {
         pyramidButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent3 = new Intent(profile.this, PyramidExerciseActivity.class);
+                Intent intent3 = new Intent(ProfileActivity.this, PyramidExerciseActivity.class);
                 intent3.putExtra("username", user);
                 startActivity(intent3);
             }

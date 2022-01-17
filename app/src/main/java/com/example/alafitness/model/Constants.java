@@ -7,12 +7,22 @@ import static com.example.alafitness.model.ExerciseType.CORE;
 
 import com.example.alafitness.R;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Class that lists all exercises available, and holds the information about the different workout types,
+ * as well as methods to find an exercise by name, find all exercises of same type and shuffling their order,
+ * and calculating the total workout time in minutes.
+ */
 public class Constants {
 
+    /**
+     * List of all the exercises as objects with a name, type and image.
+     * @retrun exercisesList - ArrayList.
+     */
     public static List<Exercise> getExercises() {
 
         ArrayList<Exercise> exercisesList = new ArrayList<>();
@@ -49,6 +59,11 @@ public class Constants {
         return exercisesList;
     }
 
+    /**
+     * Method to find an exercise with the specific name.
+     * @param exerciseName - String.
+     * @return exercise - the exercise object that matches the specified exercise name.
+     */
     public static Exercise getExercise(String exerciseName) {
 
         for (Exercise exercise : getExercises()) {
@@ -61,6 +76,12 @@ public class Constants {
         return null;
     }
 
+    /**
+     * Method selects exercises with the specific type, adds them to an ArrayList and
+     * shuffles it, then adds the shuffled exercises in order into a new ArrayList.
+     * @param exerciseType - Enum explaining type of exercise (CORE, LEGS, ARMS, CARDIO, BREAK).
+     * @return randomList - an ArrayList containing exercises in random order.
+     */
     public static List<Exercise> getRandomExerciseList(ExerciseType exerciseType) {
 
         List<Exercise> typeOfExercises = new ArrayList<>();
@@ -86,6 +107,10 @@ public class Constants {
         return randomList;
     }
 
+    /**
+     * List of exercises for Express workout type, each exercise duration is set here.
+     * @return expressExercisesList - ArrayList.
+     */
     public static List<TimedExercise> getExpressExercises() {
 
         ArrayList<TimedExercise> expressExercisesList = new ArrayList<>();
@@ -140,6 +165,10 @@ public class Constants {
         return expressExercisesList;
     }
 
+    /**
+     * List of exercises for Pyramid workout type, each exercise duration is set here.
+     * @return pyramidExercisesList - ArrayList.
+     */
     public static List<TimedExercise> getPyramidExercises() {
 
         ArrayList<TimedExercise> pyramidExercisesList = new ArrayList<>();
@@ -195,6 +224,10 @@ public class Constants {
         return pyramidExercisesList;
     }
 
+    /**
+     * List of exercises for Demo workout, each exercise duration is set here.
+     * @return demoExercisesList - ArrayList.
+     */
     public static List<TimedExercise> getDemoExercises() {
 
         ArrayList<TimedExercise> demoExercisesList = new ArrayList<>();
@@ -212,5 +245,21 @@ public class Constants {
         demoExercisesList.add(new TimedExercise(getRandomExerciseList(CORE).get(1), 11l));
 
         return demoExercisesList;
+    }
+
+    /**
+     * Method that calculates total workout time in minutes.
+     * @param workoutList - List<TimedExercises>.
+     * @return totalDuration/60 - int, time in minutes.
+     */
+    public static int totalWorkoutTime(List<TimedExercise> workoutList) {
+
+        int totalDuration = 0;
+
+        for (TimedExercise exercise : workoutList) {
+            totalDuration += exercise.getDuration().intValue();
+        }
+
+        return totalDuration/60; // to convert seconds to minutes
     }
 }

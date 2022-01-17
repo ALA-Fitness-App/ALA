@@ -1,5 +1,10 @@
 package com.example.alafitness.model;
 
+/**
+ * Class that describes TimeExercise object, which is based on Exercise object,
+ * but has a variable to set a duration time for an exercise.
+ * Contains argument constructor and relevant getters and setters.
+ */
 public class TimedExercise {
 
     Exercise exercise;
