@@ -36,7 +36,6 @@ public class PyramidExerciseActivity extends AppCompatActivity implements TextTo
     private ImageView exerciseImage;
     private Long progress;
     private ProgressBar timerBar;
-    private TextView startTimerView;
     private Button startPauseButton;
     private List<TimedExercise> exercises;
     private int currentExercise = 0;
@@ -73,14 +72,12 @@ public class PyramidExerciseActivity extends AppCompatActivity implements TextTo
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(PyramidExerciseActivity.this, TimedBreak.class);
-                startActivity(intent2);
+//                Intent intent2 = new Intent(PyramidExerciseActivity.this, TimedBreak.class);
+//                startActivity(intent2);
             }
         });
 
-        startTimerView = findViewById(R.id.timer_View);
         startPauseButton = findViewById(R.id.pause_Button);
-
         startPauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,7 +102,6 @@ public class PyramidExerciseActivity extends AppCompatActivity implements TextTo
             startTimer();
         }
     }
-
 
     public void startTimer() {
 
@@ -159,7 +155,6 @@ public class PyramidExerciseActivity extends AppCompatActivity implements TextTo
                 }
             }
 
-
             @Override
             public void onFinish() {
                 timerBar.setProgress(0);
@@ -183,6 +178,19 @@ public class PyramidExerciseActivity extends AppCompatActivity implements TextTo
         countDownTimer.cancel();
         startPauseButton.setText("START");
         timerRunning = false;
+    }
+
+    public void updateTimer() {
+        int minutes = (int) timeLeftinMills / 60000;
+        int seconds = (int) timeLeftinMills % 60000 / 1000;
+
+        String timeLeftText;
+        timeLeftText = "" + minutes;
+        timeLeftText += ":";
+        if (seconds < 10) timeLeftText += "0";
+        timeLeftText += seconds;
+
+        timer.setText(timeLeftText);
     }
 
     @Override

@@ -9,12 +9,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * Class for signing up to the application, child class that contains inherited methods.
+ * Calls methods from the DBHelper class.
+ */
+public class SignupActivity extends AppCompatActivity {
 
     EditText username, password, retypePassword;
     Button buttonSignUp, buttonSignIn;
     DBHelper DB;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,24 +39,24 @@ public class MainActivity extends AppCompatActivity {
                 String repass = retypePassword.getText().toString();
 
                 if (user.equals("") || pass.equals("") || repass.equals("")) {
-                    Toast.makeText(MainActivity.this, "Please enter your username, the new password and retype the new password!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignupActivity.this, "Please enter your username, the new password and retype the new password!", Toast.LENGTH_SHORT).show();
                 } else {
                     if (pass.equals(repass)) {
                         Boolean checkUser = DB.checkUsername(user);
                         if (checkUser == false) {
                             Boolean insert = DB.insertData(user, pass);
                             if (insert == true) {
-                                Toast.makeText(MainActivity.this, "User successfully registered!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignupActivity.this, "User successfully registered!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
                                 startActivity(intent);
                             } else {
-                                Toast.makeText(MainActivity.this, "Registration has failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignupActivity.this, "Registration has failed!", Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            Toast.makeText(MainActivity.this, "User already exists! Please sign in", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignupActivity.this, "User already exists! Please sign in", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(MainActivity.this, "Passwords do not match! Please check!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignupActivity.this, "Passwords do not match! Please check!", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -67,6 +70,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         }
-
-
     }

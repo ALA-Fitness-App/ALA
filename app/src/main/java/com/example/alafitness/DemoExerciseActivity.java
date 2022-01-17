@@ -36,7 +36,6 @@ public class DemoExerciseActivity extends AppCompatActivity implements TextToSpe
     private ImageView exerciseImage;
     private Long progress;
     private ProgressBar timerBar;
-    private TextView startTimerView;
     private Button startPauseButton;
     private List<TimedExercise> exercises;
     private int currentExercise = 0;
@@ -68,7 +67,6 @@ public class DemoExerciseActivity extends AppCompatActivity implements TextToSpe
         exerciseImage = findViewById(R.id.ivExerciseImage);
         timerBar = findViewById(R.id.progressBar);
         workoutType = findViewById(R.id.tvWorkoutType);
-        startTimerView = findViewById(R.id.timer_View);
 
         nextBtn = (Button) findViewById(R.id.next_Button);
         nextBtn.setOnClickListener(new View.OnClickListener() {
@@ -189,6 +187,19 @@ public class DemoExerciseActivity extends AppCompatActivity implements TextToSpe
         timerRunning = false;
     }
 
+    public void updateTimer() {
+        int minutes = (int) timeLeftinMills / 60000;
+        int seconds = (int) timeLeftinMills % 60000 / 1000;
+
+        String timeLeftText;
+        timeLeftText = "" + minutes;
+        timeLeftText += ":";
+        if (seconds < 10) timeLeftText += "0";
+        timeLeftText += seconds;
+
+        timer.setText(timeLeftText);
+    }
+
     @Override
     public void onInit(int i) {
         if (i == TextToSpeech.SUCCESS) {
@@ -219,6 +230,6 @@ public class DemoExerciseActivity extends AppCompatActivity implements TextToSpe
             countDownTimer = null;
         }
         player.stop();
-        // tts.stop();
+        textToSpeech.stop();
     }
 }

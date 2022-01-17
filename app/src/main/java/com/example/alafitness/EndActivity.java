@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * Class for the post workout activity, child of AppCompactActivity,
+ * contains inherited methods.
+ */
 public class EndActivity extends AppCompatActivity {
 
     private Button exitBtn;
@@ -24,7 +28,6 @@ public class EndActivity extends AppCompatActivity {
         username.setText("You did it, " + user + "!");
 
         exitBtn = (Button) findViewById(R.id.exit_Button);
-
         exitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
