@@ -64,6 +64,7 @@ public class ExpressExerciseActivity extends AppCompatActivity implements TextTo
         username.setText(user + "!");
 
         exercises = Constants.getExpressExercises();
+
         exerciseType = findViewById(R.id.tvType);
         timer = findViewById(R.id.tvTimer);
         exerciseName = findViewById(R.id.ExerciseText);

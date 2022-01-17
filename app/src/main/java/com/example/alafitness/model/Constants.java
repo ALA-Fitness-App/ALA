@@ -5,12 +5,17 @@ import static com.example.alafitness.model.ExerciseType.CARDIO;
 import static com.example.alafitness.model.ExerciseType.LEGS;
 import static com.example.alafitness.model.ExerciseType.CORE;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import com.example.alafitness.R;
 
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Class that lists all exercises available, and holds the information about the different workout types,
@@ -82,10 +87,11 @@ public class Constants {
      * @param exerciseType - Enum explaining type of exercise (CORE, LEGS, ARMS, CARDIO, BREAK).
      * @return randomList - an ArrayList containing exercises in random order.
      */
-    public static List<Exercise> getRandomExerciseList(ExerciseType exerciseType) {
+
+    public static ArrayList<Exercise> getRandomExerciseList(ExerciseType exerciseType) {
 
         List<Exercise> typeOfExercises = new ArrayList<>();
-        List<Exercise> randomList = new ArrayList<>();
+        ArrayList<Exercise> randomList = new ArrayList<>();
 
         for (Exercise exercise : getExercises()) {
             exercise.getExerciseType();
@@ -111,56 +117,61 @@ public class Constants {
      * List of exercises for Express workout type, each exercise duration is set here.
      * @return expressExercisesList - ArrayList.
      */
+
     public static List<TimedExercise> getExpressExercises() {
 
         ArrayList<TimedExercise> expressExercisesList = new ArrayList<>();
+        ArrayList<Exercise> armsList = getRandomExerciseList(ARMS);
+        ArrayList<Exercise> legsList = getRandomExerciseList(LEGS);
+        ArrayList<Exercise> coreList = getRandomExerciseList(CORE);
+        ArrayList<Exercise> cardioList = getRandomExerciseList(CARDIO);
 
         expressExercisesList.add(new TimedExercise(getExercise("Get ready!"), 16l));
 
         for (int i = 0; i < 2; i++) {
-            expressExercisesList.add(new TimedExercise(getRandomExerciseList(ARMS).get(0), 41l));
+            expressExercisesList.add(new TimedExercise(armsList.get(0), 41l));
             expressExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-            expressExercisesList.add(new TimedExercise(getRandomExerciseList(LEGS).get(0), 41l));
+            expressExercisesList.add(new TimedExercise(legsList.get(0), 41l));
             expressExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-            expressExercisesList.add(new TimedExercise(getRandomExerciseList(CARDIO).get(0), 41l));
+            expressExercisesList.add(new TimedExercise(cardioList.get(0), 41l));
             expressExercisesList.add(new TimedExercise(getExercise("Break"), 11l));
         }
 
         for (int i = 0; i < 3; i++) {
-            expressExercisesList.add(new TimedExercise(getRandomExerciseList(CORE).get(0), 31l));
+            expressExercisesList.add(new TimedExercise(coreList.get(0), 31l));
             expressExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-            expressExercisesList.add(new TimedExercise(getRandomExerciseList(CARDIO).get(1), 31l));
+            expressExercisesList.add(new TimedExercise(cardioList.get(1), 31l));
             expressExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-            expressExercisesList.add(new TimedExercise(getRandomExerciseList(LEGS).get(1), 31l));
+            expressExercisesList.add(new TimedExercise(legsList.get(1), 31l));
             expressExercisesList.add(new TimedExercise(getExercise("Break"), 11l));
         }
 
         for (int i = 0; i < 4; i++) {
-            expressExercisesList.add(new TimedExercise(getRandomExerciseList(CORE).get(1), 21l));
+            expressExercisesList.add(new TimedExercise(coreList.get(1), 21l));
             expressExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-            expressExercisesList.add(new TimedExercise(getRandomExerciseList(ARMS).get(2), 21l));
+            expressExercisesList.add(new TimedExercise(armsList.get(2), 21l));
             expressExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-            expressExercisesList.add(new TimedExercise(getRandomExerciseList(CARDIO).get(2), 21l));
+            expressExercisesList.add(new TimedExercise(cardioList.get(2), 21l));
             expressExercisesList.add(new TimedExercise(getExercise("Break"), 11l));
         }
 
-        expressExercisesList.add(new TimedExercise(getRandomExerciseList(ARMS).get(0), 21l));
+        expressExercisesList.add(new TimedExercise(armsList.get(0), 21l));
         expressExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-        expressExercisesList.add(new TimedExercise(getRandomExerciseList(LEGS).get(0), 21l));
+        expressExercisesList.add(new TimedExercise(legsList.get(0), 21l));
         expressExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-        expressExercisesList.add(new TimedExercise(getRandomExerciseList(CARDIO).get(0), 21l));
+        expressExercisesList.add(new TimedExercise(cardioList.get(0), 21l));
         expressExercisesList.add(new TimedExercise(getExercise("Break"), 11l));
-        expressExercisesList.add(new TimedExercise(getRandomExerciseList(CORE).get(0), 21l));
+        expressExercisesList.add(new TimedExercise(coreList.get(0), 21l));
         expressExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-        expressExercisesList.add(new TimedExercise(getRandomExerciseList(CARDIO).get(1), 21l));
+        expressExercisesList.add(new TimedExercise(cardioList.get(1), 21l));
         expressExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-        expressExercisesList.add(new TimedExercise(getRandomExerciseList(LEGS).get(1), 21l));
+        expressExercisesList.add(new TimedExercise(legsList.get(1), 21l));
         expressExercisesList.add(new TimedExercise(getExercise("Break"), 11l));
-        expressExercisesList.add(new TimedExercise(getRandomExerciseList(CORE).get(1), 21l));
+        expressExercisesList.add(new TimedExercise(coreList.get(1), 21l));
         expressExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-        expressExercisesList.add(new TimedExercise(getRandomExerciseList(ARMS).get(2), 21l));
+        expressExercisesList.add(new TimedExercise(armsList.get(2), 21l));
         expressExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-        expressExercisesList.add(new TimedExercise(getRandomExerciseList(CARDIO).get(2), 21l));
+        expressExercisesList.add(new TimedExercise(cardioList.get(2), 21l));
 
         return expressExercisesList;
     }
@@ -169,9 +180,14 @@ public class Constants {
      * List of exercises for Pyramid workout type, each exercise duration is set here.
      * @return pyramidExercisesList - ArrayList.
      */
+
     public static List<TimedExercise> getPyramidExercises() {
 
         ArrayList<TimedExercise> pyramidExercisesList = new ArrayList<>();
+        ArrayList<Exercise> armsList = getRandomExerciseList(ARMS);
+        ArrayList<Exercise> legsList = getRandomExerciseList(LEGS);
+        ArrayList<Exercise> coreList = getRandomExerciseList(CORE);
+        ArrayList<Exercise> cardioList = getRandomExerciseList(CARDIO);
 
         pyramidExercisesList.add(new TimedExercise(getExercise("Get ready!"), 16l));
 
@@ -228,21 +244,26 @@ public class Constants {
      * List of exercises for Demo workout, each exercise duration is set here.
      * @return demoExercisesList - ArrayList.
      */
+
     public static List<TimedExercise> getDemoExercises() {
 
         ArrayList<TimedExercise> demoExercisesList = new ArrayList<>();
+        ArrayList<Exercise> armsList = getRandomExerciseList(ARMS);
+        ArrayList<Exercise> legsList = getRandomExerciseList(LEGS);
+        ArrayList<Exercise> coreList = getRandomExerciseList(CORE);
+        ArrayList<Exercise> cardioList = getRandomExerciseList(CARDIO);
 
         demoExercisesList.add(new TimedExercise(getExercise("Get ready!"), 11l));
 
-        demoExercisesList.add(new TimedExercise(getRandomExerciseList(CORE).get(0), 11l));
+        demoExercisesList.add(new TimedExercise(coreList.get(0), 11l));
         demoExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-        demoExercisesList.add(new TimedExercise(getRandomExerciseList(LEGS).get(0), 16l));
+        demoExercisesList.add(new TimedExercise(legsList.get(0), 16l));
         demoExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-        demoExercisesList.add(new TimedExercise(getRandomExerciseList(CARDIO).get(0), 11l));
+        demoExercisesList.add(new TimedExercise(cardioList.get(0), 11l));
         demoExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-        demoExercisesList.add(new TimedExercise(getRandomExerciseList(ARMS).get(0), 16l));
+        demoExercisesList.add(new TimedExercise(armsList.get(0), 16l));
         demoExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-        demoExercisesList.add(new TimedExercise(getRandomExerciseList(CORE).get(1), 11l));
+        demoExercisesList.add(new TimedExercise(coreList.get(1), 11l));
 
         return demoExercisesList;
     }
