@@ -27,7 +27,7 @@ import java.util.Locale;
  * uses TextToSpeech interface.
  * Contains inherited and bespoke methods.
  */
-public class DemoExerciseActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
+public class ExerciseActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
     private Button nextBtn;
     private TextView exerciseType;
@@ -48,6 +48,7 @@ public class DemoExerciseActivity extends AppCompatActivity implements TextToSpe
     private TimedExercise timedExercise;
     private TextToSpeech textToSpeech;
     private TextView workoutType;
+    private String passedWorkoutType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +58,11 @@ public class DemoExerciseActivity extends AppCompatActivity implements TextToSpe
 
         Intent intent = getIntent();
         user = intent.getStringExtra("username");
+        passedWorkoutType = intent.getStringExtra("workout type");
         username = findViewById(R.id.username);
         username.setText(user + "!");
 
-        exercises = Constants.getDemoExercises();
+        exercises = Constants.getExercisesForActivity(passedWorkoutType);
         exerciseType = findViewById(R.id.tvType);
         timer = findViewById(R.id.tvTimer);
         exerciseName = findViewById(R.id.ExerciseText);
@@ -76,7 +78,7 @@ public class DemoExerciseActivity extends AppCompatActivity implements TextToSpe
                 if (currentExercise < exercises.size()) {
                     startTimer();
                 } else {
-                    Intent intent2 = new Intent(DemoExerciseActivity.this, EndActivity.class);
+                    Intent intent2 = new Intent(ExerciseActivity.this, EndActivity.class);
                     intent2.putExtra("username", user);
                     startActivity(intent2);
                 }
@@ -136,7 +138,7 @@ public class DemoExerciseActivity extends AppCompatActivity implements TextToSpe
         timeLeftinMills = timedExercise.getDuration() * 1000;
         progress = timedExercise.getDuration();
         timerBar.setProgress(progress.intValue() * 10);
-        workoutType.setText("DEMO:");
+        workoutType.setText(passedWorkoutType.toUpperCase() + ": ");
 
         countDownTimer = new CountDownTimer(timeLeftinMills, 1000) {
             @Override
@@ -167,7 +169,7 @@ public class DemoExerciseActivity extends AppCompatActivity implements TextToSpe
                 if (currentExercise < exercises.size()) {
                     startTimer();
                 } else {
-                    Intent intent2 = new Intent(DemoExerciseActivity.this, EndActivity.class);
+                    Intent intent2 = new Intent(ExerciseActivity.this, EndActivity.class);
                     intent2.putExtra("username", user);
                     startActivity(intent2);
                 }

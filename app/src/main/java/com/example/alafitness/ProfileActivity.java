@@ -23,6 +23,7 @@ public class ProfileActivity extends AppCompatActivity {
     TextView username;
     TextView workoutDuration;
     String user;
+    String workoutType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +40,9 @@ public class ProfileActivity extends AppCompatActivity {
         expressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(ProfileActivity.this, ExpressExerciseActivity.class);
+                Intent intent2 = new Intent(ProfileActivity.this, ExerciseActivity.class);
                 intent2.putExtra("username", user);
+                intent2.putExtra("workout type", "express");
                 startActivity(intent2);
             }
         });
@@ -49,8 +51,9 @@ public class ProfileActivity extends AppCompatActivity {
         demoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(ProfileActivity.this, DemoExerciseActivity.class);
+                Intent intent1 = new Intent(ProfileActivity.this, ExerciseActivity.class);
                 intent1.putExtra("username", user);
+                intent1.putExtra("workout type", "demo");
                 startActivity(intent1);
             }
         });
@@ -59,8 +62,9 @@ public class ProfileActivity extends AppCompatActivity {
         pyramidButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent3 = new Intent(ProfileActivity.this, PyramidExerciseActivity.class);
+                Intent intent3 = new Intent(ProfileActivity.this, ExerciseActivity.class);
                 intent3.putExtra("username", user);
+                intent3.putExtra("workout type", "pyramid");
                 startActivity(intent3);
             }
         });

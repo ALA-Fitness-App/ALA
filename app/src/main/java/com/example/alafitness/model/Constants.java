@@ -6,6 +6,7 @@ import static com.example.alafitness.model.ExerciseType.LEGS;
 import static com.example.alafitness.model.ExerciseType.CORE;
 
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -282,5 +283,20 @@ public class Constants {
         }
 
         return totalDuration/60; // to convert seconds to minutes
+    }
+
+    public static List<TimedExercise> getExercisesForActivity (String passedActivity) {
+
+        switch (passedActivity) {
+            case "demo":
+                return getDemoExercises();
+            case "express":
+                return getExpressExercises();
+            case "pyramid":
+                return getPyramidExercises();
+            default:
+                Log.e("passed workout type", "The workout type not recognised.");
+        }
+        return null;
     }
 }
