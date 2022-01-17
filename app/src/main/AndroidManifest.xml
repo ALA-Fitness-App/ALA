@@ -13,13 +13,7 @@
             android:name=".EndActivity"
             android:exported="false" />
         <activity
-            android:name=".ExpressExerciseActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DemoExerciseActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PyramidExerciseActivity"
+            android:name=".ExerciseActivity"
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"
