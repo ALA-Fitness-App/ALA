@@ -29,7 +29,7 @@ public class EndActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(EndActivity.this, profile.class);
+                Intent intent = new Intent(EndActivity.this, ProfileActivity.class);
                 intent.putExtra("username", user);
                 startActivity(intent);
             }

@@ -25,7 +25,12 @@ import com.example.alafitness.model.TimedExercise;
 import java.util.List;
 import java.util.Locale;
 
-public class ExpressExerciseActivity extends AppCompatActivity implements TextToSpeech.OnInitListener{
+/**
+ * Class that contains all methods to run the Express workout, child of AppCompatActivity,
+ * uses TextToSpeech interface.
+ * Contains inherited and bespoke methods.
+ */
+public class ExpressExerciseActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
     private Button nextBtn;
     private TextView exerciseType;
@@ -37,14 +42,14 @@ public class ExpressExerciseActivity extends AppCompatActivity implements TextTo
     private TextView startTimerView;
     private Button startPauseButton;
     private List<TimedExercise> exercises;
-    int currentExercise = 0;
+    private int currentExercise = 0;
     private CountDownTimer countDownTimer;
     private long timeLeftinMills = 10000; // 10 seconds
     private boolean timerRunning;
-    TextView username;
-    String user;
+    private TextView username;
+    public String user;
     private MediaPlayer player;
-    TimedExercise timedExercise;
+    private TimedExercise timedExercise;
     private TextToSpeech textToSpeech;
     private TextView workoutType;
 
@@ -71,7 +76,7 @@ public class ExpressExerciseActivity extends AppCompatActivity implements TextTo
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(ExpressExerciseActivity.this,TimedBreak.class);
+                Intent intent2 = new Intent(ExpressExerciseActivity.this, TimedBreak.class);
                 startActivity(intent2);
             }
         });
@@ -111,7 +116,7 @@ public class ExpressExerciseActivity extends AppCompatActivity implements TextTo
 
         if (timedExercise.getType().equals(ExerciseType.BREAK)) {
             exerciseType.setText(timedExercise.getName());
-            exerciseName.setText("Next up: " + exercises.get(currentExercise+1).getName());
+            exerciseName.setText("Next up: " + exercises.get(currentExercise + 1).getName());
             try {
                 readItOut("Next up: " + exercises.get(currentExercise + 1).getName());
             } catch (Exception e) {
@@ -129,7 +134,7 @@ public class ExpressExerciseActivity extends AppCompatActivity implements TextTo
 
         exerciseImage.setImageResource(timedExercise.getImageLink());
         timer.setText(timedExercise.getDuration().toString());
-        timeLeftinMills = timedExercise.getDuration()*1000;
+        timeLeftinMills = timedExercise.getDuration() * 1000;
         progress = timedExercise.getDuration();
         timerBar.setProgress(progress.intValue() * 10);
         workoutType.setText("EXPRESS:");
@@ -137,24 +142,25 @@ public class ExpressExerciseActivity extends AppCompatActivity implements TextTo
         countDownTimer = new CountDownTimer(timeLeftinMills, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-               progress--;
-               timer.setText(progress.toString());
+                progress--;
+                timer.setText(progress.toString());
 
                 timerBar.setProgress((progress.intValue() * 100) / (timedExercise.getDuration().intValue()));
 
-               if (progress<=3 && progress>0 && timedExercise.getType().equals(ExerciseType.BREAK)) {
+                if (progress <= 3 && progress > 0 && timedExercise.getType().equals(ExerciseType.BREAK)) {
 
-                   try {
+                    try {
 
-                       Uri sound = Uri.parse("android.resource://com.example.alafitness/" + R.raw.countdown);
-                       player = MediaPlayer.create(getApplicationContext(), sound);
-                       player.setLooping(false);
-                       player.start();
+                        Uri sound = Uri.parse("android.resource://com.example.alafitness/" + R.raw.countdown);
+                        player = MediaPlayer.create(getApplicationContext(), sound);
+                        player.setLooping(false);
+                        player.start();
 
-                   }catch (Exception e) {
-                       e.printStackTrace();
-                   }}
-               }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
 
 
             @Override
@@ -165,7 +171,7 @@ public class ExpressExerciseActivity extends AppCompatActivity implements TextTo
                 if (currentExercise < exercises.size()) {
                     startTimer();
                 } else {
-                    Intent intent2 = new Intent(ExpressExerciseActivity.this,EndActivity.class);
+                    Intent intent2 = new Intent(ExpressExerciseActivity.this, EndActivity.class);
                     intent2.putExtra("username", user);
                     startActivity(intent2);
                 }
@@ -187,13 +193,14 @@ public class ExpressExerciseActivity extends AppCompatActivity implements TextTo
         if (i == TextToSpeech.SUCCESS) {
             int result = textToSpeech.setLanguage(Locale.ENGLISH);
 
-            if (result== TextToSpeech.LANG_MISSING_DATA || result==TextToSpeech.LANG_NOT_SUPPORTED) {
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("tts", "Specified language not supported");
             }
-        }else {
+        } else {
             Log.e("tts", "Initialization failed");
         }
     }
+
     private void readItOut(String text) {
         textToSpeech.speak(text, TextToSpeech.QUEUE_ADD, null, "");
     }

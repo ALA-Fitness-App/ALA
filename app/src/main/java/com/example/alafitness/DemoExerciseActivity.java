@@ -22,7 +22,12 @@ import com.example.alafitness.model.TimedExercise;
 import java.util.List;
 import java.util.Locale;
 
-public class DemoExerciseActivity extends AppCompatActivity implements TextToSpeech.OnInitListener{
+/**
+ * Class that contains all methods to run the Demo workout, child of AppCompatActivity,
+ * uses TextToSpeech interface.
+ * Contains inherited and bespoke methods.
+ */
+public class DemoExerciseActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
     private Button nextBtn;
     private TextView exerciseType;
@@ -34,14 +39,14 @@ public class DemoExerciseActivity extends AppCompatActivity implements TextToSpe
     private TextView startTimerView;
     private Button startPauseButton;
     private List<TimedExercise> exercises;
-    int currentExercise = 0;
+    private int currentExercise = 0;
     private CountDownTimer countDownTimer;
     private long timeLeftinMills = 10000; // 10 seconds
     private boolean timerRunning;
-    TextView username;
-    String user;
+    private TextView username;
+    public String user;
     private MediaPlayer player;
-    TimedExercise timedExercise;
+    private TimedExercise timedExercise;
     private TextToSpeech textToSpeech;
     private TextView workoutType;
 
@@ -63,19 +68,24 @@ public class DemoExerciseActivity extends AppCompatActivity implements TextToSpe
         exerciseImage = findViewById(R.id.ivExerciseImage);
         timerBar = findViewById(R.id.progressBar);
         workoutType = findViewById(R.id.tvWorkoutType);
+        startTimerView = findViewById(R.id.timer_View);
 
         nextBtn = (Button) findViewById(R.id.next_Button);
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(DemoExerciseActivity.this,TimedBreak.class);
-                startActivity(intent2);
+                currentExercise++;
+                if (currentExercise < exercises.size()) {
+                    startTimer();
+                } else {
+                    Intent intent2 = new Intent(DemoExerciseActivity.this, EndActivity.class);
+                    intent2.putExtra("username", user);
+                    startActivity(intent2);
+                }
             }
         });
 
-        startTimerView = findViewById(R.id.timer_View);
         startPauseButton = findViewById(R.id.pause_Button);
-
         startPauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,14 +111,13 @@ public class DemoExerciseActivity extends AppCompatActivity implements TextToSpe
         }
     }
 
-
     public void startTimer() {
 
         TimedExercise timedExercise = exercises.get(currentExercise);
 
         if (timedExercise.getType().equals(ExerciseType.BREAK)) {
             exerciseType.setText(timedExercise.getName());
-            exerciseName.setText("Next up: " + exercises.get(currentExercise+1).getName());
+            exerciseName.setText("Next up: " + exercises.get(currentExercise + 1).getName());
             try {
                 readItOut("Next up: " + exercises.get(currentExercise + 1).getName());
             } catch (Exception e) {
@@ -126,7 +135,7 @@ public class DemoExerciseActivity extends AppCompatActivity implements TextToSpe
 
         exerciseImage.setImageResource(timedExercise.getImageLink());
         timer.setText(timedExercise.getDuration().toString());
-        timeLeftinMills = timedExercise.getDuration()*1000;
+        timeLeftinMills = timedExercise.getDuration() * 1000;
         progress = timedExercise.getDuration();
         timerBar.setProgress(progress.intValue() * 10);
         workoutType.setText("DEMO:");
@@ -139,19 +148,18 @@ public class DemoExerciseActivity extends AppCompatActivity implements TextToSpe
 
                 timerBar.setProgress((progress.intValue() * 100) / (timedExercise.getDuration().intValue()));
 
-                if (progress<=3 && progress > 0 && timedExercise.getType().equals(ExerciseType.BREAK)) {
+                if (progress <= 3 && progress > 0 && timedExercise.getType().equals(ExerciseType.BREAK)) {
 
                     try {
                         Uri sound = Uri.parse("android.resource://com.example.alafitness/" + R.raw.countdown);
                         player = MediaPlayer.create(getApplicationContext(), sound);
                         player.setLooping(false);
                         player.start();
-                    }catch (Exception e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
             }
-
 
             @Override
             public void onFinish() {
@@ -161,11 +169,10 @@ public class DemoExerciseActivity extends AppCompatActivity implements TextToSpe
                 if (currentExercise < exercises.size()) {
                     startTimer();
                 } else {
-                    Intent intent2 = new Intent(DemoExerciseActivity.this,EndActivity.class);
+                    Intent intent2 = new Intent(DemoExerciseActivity.this, EndActivity.class);
                     intent2.putExtra("username", user);
                     startActivity(intent2);
                 }
-
             }
         }.start();
 
@@ -173,6 +180,9 @@ public class DemoExerciseActivity extends AppCompatActivity implements TextToSpe
         timerRunning = true;
     }
 
+    /**
+     * Method to stop the timer running.
+     */
     public void stopTimer() {
         countDownTimer.cancel();
         startPauseButton.setText("START");
@@ -184,13 +194,19 @@ public class DemoExerciseActivity extends AppCompatActivity implements TextToSpe
         if (i == TextToSpeech.SUCCESS) {
             int result = textToSpeech.setLanguage(Locale.ENGLISH);
 
-            if (result== TextToSpeech.LANG_MISSING_DATA || result==TextToSpeech.LANG_NOT_SUPPORTED) {
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("tts", "Specified language not supported");
             }
-        }else {
+        } else {
             Log.e("tts", "Initialization failed");
         }
     }
+
+    /**
+     * Method to activate TextToSpeech functionality.
+     *
+     * @param text - String to be "read out".
+     */
     private void readItOut(String text) {
         textToSpeech.speak(text, TextToSpeech.QUEUE_ADD, null, "");
     }

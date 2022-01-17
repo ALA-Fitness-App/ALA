@@ -22,7 +22,12 @@ import com.example.alafitness.model.TimedExercise;
 import java.util.List;
 import java.util.Locale;
 
-public class PyramidExerciseActivity extends AppCompatActivity implements TextToSpeech.OnInitListener{
+/**
+ * Class that contains all methods to run the Pyramid workout, child of AppCompatActivity,
+ * uses TextToSpeech interface.
+ * Contains inherited and bespoke methods.
+ */
+public class PyramidExerciseActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
     private Button nextBtn;
     private TextView exerciseType;
@@ -34,14 +39,14 @@ public class PyramidExerciseActivity extends AppCompatActivity implements TextTo
     private TextView startTimerView;
     private Button startPauseButton;
     private List<TimedExercise> exercises;
-    int currentExercise = 0;
+    private int currentExercise = 0;
     private CountDownTimer countDownTimer;
     private long timeLeftinMills = 10000; // 10 seconds
     private boolean timerRunning;
-    TextView username;
-    String user;
+    private TextView username;
+    public String user;
     private MediaPlayer player;
-    TimedExercise timedExercise;
+    private TimedExercise timedExercise;
     private TextToSpeech textToSpeech;
     private TextView workoutType;
 
@@ -68,7 +73,7 @@ public class PyramidExerciseActivity extends AppCompatActivity implements TextTo
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(PyramidExerciseActivity.this,TimedBreak.class);
+                Intent intent2 = new Intent(PyramidExerciseActivity.this, TimedBreak.class);
                 startActivity(intent2);
             }
         });
@@ -108,7 +113,7 @@ public class PyramidExerciseActivity extends AppCompatActivity implements TextTo
 
         if (timedExercise.getType().equals(ExerciseType.BREAK)) {
             exerciseType.setText(timedExercise.getName());
-            exerciseName.setText("Next up: " + exercises.get(currentExercise+1).getName());
+            exerciseName.setText("Next up: " + exercises.get(currentExercise + 1).getName());
             try {
                 readItOut("Next up: " + exercises.get(currentExercise + 1).getName());
             } catch (Exception e) {
@@ -126,7 +131,7 @@ public class PyramidExerciseActivity extends AppCompatActivity implements TextTo
 
         exerciseImage.setImageResource(timedExercise.getImageLink());
         timer.setText(timedExercise.getDuration().toString());
-        timeLeftinMills = timedExercise.getDuration()*1000;
+        timeLeftinMills = timedExercise.getDuration() * 1000;
         progress = timedExercise.getDuration();
         timerBar.setProgress(progress.intValue() * 10);
         workoutType.setText("PYRAMID:");
@@ -139,7 +144,7 @@ public class PyramidExerciseActivity extends AppCompatActivity implements TextTo
 
                 timerBar.setProgress((progress.intValue() * 100) / (timedExercise.getDuration().intValue()));
 
-                if (progress<=3 && progress>0 && timedExercise.getType().equals(ExerciseType.BREAK)) {
+                if (progress <= 3 && progress > 0 && timedExercise.getType().equals(ExerciseType.BREAK)) {
 
                     try {
 
@@ -148,9 +153,10 @@ public class PyramidExerciseActivity extends AppCompatActivity implements TextTo
                         player.setLooping(false);
                         player.start();
 
-                    }catch (Exception e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
-                    }}
+                    }
+                }
             }
 
 
@@ -162,7 +168,7 @@ public class PyramidExerciseActivity extends AppCompatActivity implements TextTo
                 if (currentExercise < exercises.size()) {
                     startTimer();
                 } else {
-                    Intent intent2 = new Intent(PyramidExerciseActivity.this,EndActivity.class);
+                    Intent intent2 = new Intent(PyramidExerciseActivity.this, EndActivity.class);
                     intent2.putExtra("username", user);
                     startActivity(intent2);
                 }
@@ -184,13 +190,14 @@ public class PyramidExerciseActivity extends AppCompatActivity implements TextTo
         if (i == TextToSpeech.SUCCESS) {
             int result = textToSpeech.setLanguage(Locale.ENGLISH);
 
-            if (result== TextToSpeech.LANG_MISSING_DATA || result==TextToSpeech.LANG_NOT_SUPPORTED) {
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("tts", "Specified language not supported");
             }
-        }else {
+        } else {
             Log.e("tts", "Initialization failed");
         }
     }
+
     private void readItOut(String text) {
         textToSpeech.speak(text, TextToSpeech.QUEUE_ADD, null, "");
     }
