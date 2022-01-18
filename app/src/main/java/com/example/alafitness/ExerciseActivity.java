@@ -49,19 +49,20 @@ public class ExerciseActivity extends AppCompatActivity implements TextToSpeech.
     private TextToSpeech textToSpeech;
     private TextView workoutType;
     private String passedWorkoutType;
+    private Long fullDuration;
+    private Long remainingProgress;
+    private Long timeLeftinSecs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
         textToSpeech = new TextToSpeech(this, this);
-
         Intent intent = getIntent();
         user = intent.getStringExtra("username");
         passedWorkoutType = intent.getStringExtra("workout type");
         username = findViewById(R.id.username);
         username.setText(user + "!");
-
         exercises = Constants.getExercisesForActivity(passedWorkoutType);
         exerciseType = findViewById(R.id.tvType);
         timer = findViewById(R.id.tvTimer);
@@ -69,19 +70,18 @@ public class ExerciseActivity extends AppCompatActivity implements TextToSpeech.
         exerciseImage = findViewById(R.id.ivExerciseImage);
         timerBar = findViewById(R.id.progressBar);
         workoutType = findViewById(R.id.tvWorkoutType);
+        timedExercise = exercises.get(currentExercise);
+        exerciseType.setText(timedExercise.getType().toString());
+        exerciseName.setText(timedExercise.getName());
+        exerciseImage.setImageResource(timedExercise.getImageLink());
+        timer.setText(timedExercise.getDuration().toString());
 
         nextBtn = (Button) findViewById(R.id.next_Button);
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentExercise++;
-                if (currentExercise < exercises.size()) {
-                    startTimer();
-                } else {
-                    Intent intent2 = new Intent(ExerciseActivity.this, EndActivity.class);
-                    intent2.putExtra("username", user);
-                    startActivity(intent2);
-                }
+                countDownTimer.cancel();
+                countDownTimer.onFinish();
             }
         });
 
@@ -89,29 +89,17 @@ public class ExerciseActivity extends AppCompatActivity implements TextToSpeech.
         startPauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 startstop();
             }
         });
 
-        timedExercise = exercises.get(currentExercise);
-        exerciseType.setText(timedExercise.getType().toString());
-        exerciseName.setText(timedExercise.getName());
-        exerciseImage.setImageResource(timedExercise.getImageLink());
-        timer.setText(timedExercise.getDuration().toString());
-
-        startstop();
+        startTimer();
     }
 
-    public void startstop() {
-        if (timerRunning) {
-            stopTimer();
-        } else {
-            // need a method to continue the timer rather than start
-            startTimer();
-        }
-    }
 
-    public void startTimer() {
+
+    public void startTimer(Long timeLeftinMills) {
 
         TimedExercise timedExercise = exercises.get(currentExercise);
 
@@ -134,19 +122,27 @@ public class ExerciseActivity extends AppCompatActivity implements TextToSpeech.
         }
 
         exerciseImage.setImageResource(timedExercise.getImageLink());
-        timer.setText(timedExercise.getDuration().toString());
-        timeLeftinMills = timedExercise.getDuration() * 1000;
-        progress = timedExercise.getDuration();
+        if (timeLeftinMills > 0) {
+            timeLeftinSecs = timeLeftinMills / 1000;
+            timer.setText(timeLeftinSecs.toString());
+            progress = timeLeftinSecs;
+        } else {
+            progress = timedExercise.getDuration();
+            timeLeftinMills = progress*1000;
+            timeLeftinSecs = progress;
+            timer.setText(progress.toString());
+        }
         timerBar.setProgress(progress.intValue() * 10);
         workoutType.setText(passedWorkoutType.toUpperCase() + ": ");
+        fullDuration = timedExercise.getDuration();
+
 
         countDownTimer = new CountDownTimer(timeLeftinMills, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 progress--;
                 timer.setText(progress.toString());
-
-                timerBar.setProgress((progress.intValue() * 100) / (timedExercise.getDuration().intValue()));
+                timerBar.setProgress((progress.intValue() * 100) / (fullDuration.intValue()));
 
                 if (progress <= 3 && progress > 0 && timedExercise.getType().equals(ExerciseType.BREAK)) {
 
@@ -180,10 +176,25 @@ public class ExerciseActivity extends AppCompatActivity implements TextToSpeech.
         timerRunning = true;
     }
 
+    public void startstop() {
+        System.out.println("+++ progress = " + progress + ", exercise duration = " + fullDuration);
+        if (timerRunning) {
+            stopTimer();
+        } else {
+            startTimer(remainingProgress);
+        }
+    }
+
     /**
      * Method to stop the timer running.
      */
     public void stopTimer() {
+        //resumeProgress = timerBar.getProgress();
+        remainingProgress = progress * 1000;
+        System.out.println("+++ Progress value " + progress);
+//        timerBar.setProgress(progress.intValue() * 10);
+//        timedExercise.setDuration(progress);
+
         countDownTimer.cancel();
         startPauseButton.setText("START");
         timerRunning = false;
@@ -200,6 +211,10 @@ public class ExerciseActivity extends AppCompatActivity implements TextToSpeech.
         timeLeftText += seconds;
 
         timer.setText(timeLeftText);
+    }
+
+    public void startTimer() {
+        startTimer(-1l);
     }
 
     @Override

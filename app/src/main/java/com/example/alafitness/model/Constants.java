@@ -29,7 +29,7 @@ public class Constants {
      * List of all the exercises as objects with a name, type and image.
      * @retrun exercisesList - ArrayList.
      */
-    public static List<Exercise> getExercises() {
+    private static List<Exercise> getExercises() {
 
         ArrayList<Exercise> exercisesList = new ArrayList<>();
 
@@ -70,7 +70,7 @@ public class Constants {
      * @param exerciseName - String.
      * @return exercise - the exercise object that matches the specified exercise name.
      */
-    public static Exercise getExercise(String exerciseName) {
+    private static Exercise getExercise(String exerciseName) {
 
         for (Exercise exercise : getExercises()) {
             exercise.getExerciseName();
@@ -89,7 +89,7 @@ public class Constants {
      * @return randomList - an ArrayList containing exercises in random order.
      */
 
-    public static ArrayList<Exercise> getRandomExerciseList(ExerciseType exerciseType) {
+    private static ArrayList<Exercise> getRandomExerciseList(ExerciseType exerciseType) {
 
         List<Exercise> typeOfExercises = new ArrayList<>();
         ArrayList<Exercise> randomList = new ArrayList<>();
@@ -119,7 +119,7 @@ public class Constants {
      * @return expressExercisesList - ArrayList.
      */
 
-    public static List<TimedExercise> getExpressExercises() {
+    private static List<TimedExercise> getExpressExercises() {
 
         ArrayList<TimedExercise> expressExercisesList = new ArrayList<>();
         ArrayList<Exercise> armsList = getRandomExerciseList(ARMS);
@@ -161,13 +161,13 @@ public class Constants {
         expressExercisesList.add(new TimedExercise(legsList.get(0), 21l));
         expressExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
         expressExercisesList.add(new TimedExercise(cardioList.get(0), 21l));
-        expressExercisesList.add(new TimedExercise(getExercise("Break"), 11l));
+        expressExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
         expressExercisesList.add(new TimedExercise(coreList.get(0), 21l));
         expressExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
         expressExercisesList.add(new TimedExercise(cardioList.get(1), 21l));
         expressExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
         expressExercisesList.add(new TimedExercise(legsList.get(1), 21l));
-        expressExercisesList.add(new TimedExercise(getExercise("Break"), 11l));
+        expressExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
         expressExercisesList.add(new TimedExercise(coreList.get(1), 21l));
         expressExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
         expressExercisesList.add(new TimedExercise(armsList.get(2), 21l));
@@ -182,7 +182,7 @@ public class Constants {
      * @return pyramidExercisesList - ArrayList.
      */
 
-    public static List<TimedExercise> getPyramidExercises() {
+    private static List<TimedExercise> getPyramidExercises() {
 
         ArrayList<TimedExercise> pyramidExercisesList = new ArrayList<>();
         ArrayList<Exercise> armsList = getRandomExerciseList(ARMS);
@@ -193,50 +193,50 @@ public class Constants {
         pyramidExercisesList.add(new TimedExercise(getExercise("Get ready!"), 16l));
 
         for (int i = 0; i < 3; i++) {
-            pyramidExercisesList.add(new TimedExercise(getRandomExerciseList(LEGS).get(0), 21l));
+            pyramidExercisesList.add(new TimedExercise(legsList.get(0), 21l));
             pyramidExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-            pyramidExercisesList.add(new TimedExercise(getRandomExerciseList(CORE).get(0), 31l));
+            pyramidExercisesList.add(new TimedExercise(coreList.get(0), 31l));
             pyramidExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-            pyramidExercisesList.add(new TimedExercise(getRandomExerciseList(LEGS).get(1), 41l));
+            pyramidExercisesList.add(new TimedExercise(legsList.get(1), 41l));
             pyramidExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-            pyramidExercisesList.add(new TimedExercise(getRandomExerciseList(ARMS).get(0), 31l));
+            pyramidExercisesList.add(new TimedExercise(armsList.get(0), 31l));
             pyramidExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-            pyramidExercisesList.add(new TimedExercise(getRandomExerciseList(CARDIO).get(0), 21l));
+            pyramidExercisesList.add(new TimedExercise(cardioList.get(0), 21l));
             pyramidExercisesList.add(new TimedExercise(getExercise("Break"), 31l));
         }
 
         for (int i = 0; i < 3; i++) {
-            pyramidExercisesList.add(new TimedExercise(getRandomExerciseList(CORE).get(1), 11l));
+            pyramidExercisesList.add(new TimedExercise(coreList.get(1), 11l));
             pyramidExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-            pyramidExercisesList.add(new TimedExercise(getRandomExerciseList(ARMS).get(1), 21l));
+            pyramidExercisesList.add(new TimedExercise(armsList.get(1), 21l));
             pyramidExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-            pyramidExercisesList.add(new TimedExercise(getRandomExerciseList(CORE).get(2), 31l));
+            pyramidExercisesList.add(new TimedExercise(coreList.get(2), 31l));
             pyramidExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-            pyramidExercisesList.add(new TimedExercise(getRandomExerciseList(LEGS).get(2), 21l));
+            pyramidExercisesList.add(new TimedExercise(legsList.get(2), 21l));
             pyramidExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-            pyramidExercisesList.add(new TimedExercise(getRandomExerciseList(CARDIO).get(2), 11l));
+            pyramidExercisesList.add(new TimedExercise(cardioList.get(2), 11l));
             pyramidExercisesList.add(new TimedExercise(getExercise("Break"), 31l));
         }
 
-        pyramidExercisesList.add(new TimedExercise(getRandomExerciseList(LEGS).get(0), 21l));
+        pyramidExercisesList.add(new TimedExercise(legsList.get(0), 21l));
         pyramidExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-        pyramidExercisesList.add(new TimedExercise(getRandomExerciseList(CORE).get(0), 21l));
+        pyramidExercisesList.add(new TimedExercise(coreList.get(0), 21l));
         pyramidExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-        pyramidExercisesList.add(new TimedExercise(getRandomExerciseList(LEGS).get(1), 21l));
+        pyramidExercisesList.add(new TimedExercise(legsList.get(1), 21l));
         pyramidExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-        pyramidExercisesList.add(new TimedExercise(getRandomExerciseList(ARMS).get(0), 21l));
+        pyramidExercisesList.add(new TimedExercise(armsList.get(0), 21l));
         pyramidExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-        pyramidExercisesList.add(new TimedExercise(getRandomExerciseList(CARDIO).get(0), 21l));
-        pyramidExercisesList.add(new TimedExercise(getExercise("Break"), 61l));
-        pyramidExercisesList.add(new TimedExercise(getRandomExerciseList(CORE).get(1), 21l));
+        pyramidExercisesList.add(new TimedExercise(cardioList.get(0), 21l));
         pyramidExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-        pyramidExercisesList.add(new TimedExercise(getRandomExerciseList(ARMS).get(1), 21l));
+        pyramidExercisesList.add(new TimedExercise(coreList.get(1), 21l));
         pyramidExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-        pyramidExercisesList.add(new TimedExercise(getRandomExerciseList(CORE).get(2), 21l));
+        pyramidExercisesList.add(new TimedExercise(armsList.get(1), 21l));
         pyramidExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-        pyramidExercisesList.add(new TimedExercise(getRandomExerciseList(LEGS).get(2), 21l));
+        pyramidExercisesList.add(new TimedExercise(coreList.get(2), 21l));
         pyramidExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
-        pyramidExercisesList.add(new TimedExercise(getRandomExerciseList(CARDIO).get(2), 21l));
+        pyramidExercisesList.add(new TimedExercise(legsList.get(2), 21l));
+        pyramidExercisesList.add(new TimedExercise(getExercise("Break"), 6l));
+        pyramidExercisesList.add(new TimedExercise(cardioList.get(2), 21l));
 
         return pyramidExercisesList;
     }
@@ -246,7 +246,7 @@ public class Constants {
      * @return demoExercisesList - ArrayList.
      */
 
-    public static List<TimedExercise> getDemoExercises() {
+    private static List<TimedExercise> getDemoExercises() {
 
         ArrayList<TimedExercise> demoExercisesList = new ArrayList<>();
         ArrayList<Exercise> armsList = getRandomExerciseList(ARMS);
@@ -271,14 +271,14 @@ public class Constants {
 
     /**
      * Method that calculates total workout time in minutes.
-     * @param workoutList - List<TimedExercises>.
+     * @param passedActivity - String describing workout type.
      * @return totalDuration/60 - int, time in minutes.
      */
-    public static int totalWorkoutTime(List<TimedExercise> workoutList) {
+    public static int totalWorkoutTime(String passedActivity) {
 
         int totalDuration = 0;
 
-        for (TimedExercise exercise : workoutList) {
+        for (TimedExercise exercise : getExercisesForActivity(passedActivity)) {
             totalDuration += exercise.getDuration().intValue();
         }
 

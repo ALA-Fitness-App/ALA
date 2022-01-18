@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/concrete"
-    tools:context=".ExpressExerciseActivity">
+    tools:context=".ExerciseActivity">
 
     <TextView
         android:id="@+id/tvType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="@string/exercise_type"
         android:textAlignment="center"
@@ -26,7 +26,7 @@
         android:id="@+id/tvWorkoutType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="@string/wk_type"
         android:textAlignment="center"
@@ -56,25 +56,27 @@
         tools:text="00:10" />
 
     <ImageView
-            android:id="@+id/ivExerciseImage"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:adjustViewBounds="true"
-            android:cropToPadding="false"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvType"
-            app:layout_constraintVertical_bias="0.403"
-            app:srcCompat="@drawable/plank"
-        android:contentDescription="@string/exxercise_image" />
+        android:id="@+id/ivExerciseImage"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/exxercise_image"
+        android:cropToPadding="false"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvType"
+        app:layout_constraintVertical_bias="0.36"
+        app:srcCompat="@drawable/plank" />
 
     <TextView
         android:id="@+id/ExerciseText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
         android:text="@string/plank"
         android:textColor="@color/white"
         android:textSize="20sp"
@@ -83,13 +85,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivExerciseImage"
-        app:layout_constraintVertical_bias="0.806" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
     <Button
         android:id="@+id/pause_Button"
-        android:layout_width="120dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_marginStart="56dp"
         android:layout_marginBottom="32dp"
@@ -103,8 +104,8 @@
 
     <Button
         android:id="@+id/next_Button"
-        android:layout_width="120dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="32dp"
         android:gravity="center"
@@ -131,7 +132,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/ivExerciseImage"
         app:layout_constraintTop_toTopOf="@+id/ivExerciseImage"
-        app:layout_constraintVertical_bias="0.731"
+        app:layout_constraintVertical_bias="0.709"
         tools:progress="60" />
 
     <TextView
