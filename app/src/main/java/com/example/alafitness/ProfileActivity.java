@@ -34,7 +34,7 @@ public class ProfileActivity extends AppCompatActivity {
         username = findViewById(R.id.tvUsernameProfile);
         username.setText("Hello, " + user + "!");
         workoutDuration = findViewById(R.id.tvWorkoutsThisWeek);
-        workoutDuration.setText("this week: " + Constants.totalWorkoutTime(Constants.getDemoExercises()));
+        workoutDuration.setText("this week: " + Constants.totalWorkoutTime("demo"));
 
         expressButton = findViewById(R.id.ibExpress);
         expressButton.setOnClickListener(new View.OnClickListener() {
