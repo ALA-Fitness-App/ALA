@@ -6,11 +6,9 @@ package com.example.alafitness.model;
  * Contains argument constructor and relevant getters.
  */
 public class Exercise {
-
     private String exerciseName;
     private ExerciseType exerciseType;
     private int imageLink;
-
 
     public Exercise(String exerciseName, ExerciseType exerciseType, int imageLink) {
         this.exerciseName = exerciseName;
@@ -29,6 +27,5 @@ public class Exercise {
     public int getImageLink() {
         return imageLink;
     }
-
 
 }

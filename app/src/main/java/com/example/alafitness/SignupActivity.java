@@ -14,7 +14,6 @@ import android.widget.Toast;
  * Calls methods from the DBHelper class.
  */
 public class SignupActivity extends AppCompatActivity {
-
     EditText username, password, retypePassword;
     Button buttonSignUp, buttonSignIn;
     DBHelper DB;
@@ -23,7 +22,6 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sing_up);
-
         username = findViewById(R.id.new_username);
         password = findViewById(R.id.new_password);
         retypePassword = findViewById(R.id.retype_password);
@@ -37,7 +35,6 @@ public class SignupActivity extends AppCompatActivity {
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
                 String repass = retypePassword.getText().toString();
-
                 if (user.equals("") || pass.equals("") || repass.equals("")) {
                     Toast.makeText(SignupActivity.this, "Please enter your username, the new password and retype the new password!", Toast.LENGTH_SHORT).show();
                 } else {
@@ -60,7 +57,7 @@ public class SignupActivity extends AppCompatActivity {
                     }
                 }
             }
-            });
+        });
 
         buttonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,5 +66,5 @@ public class SignupActivity extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
-        }
     }
+}

@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="120dp"
         android:gravity="top"
+        android:background="@color/main_background"
         android:orientation="horizontal">
 
         <TextView
@@ -19,6 +20,8 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/welcome"
+            android:textSize="18sp"
+            android:textStyle="bold"
             android:textColor="@color/accent_dark" />
 
     </LinearLayout>
@@ -34,7 +37,9 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/username"
-            android:textColor="@color/accent_dark" />
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/new_username"
@@ -45,6 +50,9 @@
             android:ems="10"
             android:inputType="textEmailAddress"
             android:textAlignment="center"
+            android:backgroundTint="@color/accent_light"
+            android:textStyle="bold"
+            android:textColor="@color/accent_dark"
             tools:ignore="SpeakableTextPresentCheck" />
 
     </LinearLayout>
@@ -60,7 +68,9 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/new_password"
-            android:textColor="@color/accent_dark" />
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/new_password"
@@ -71,6 +81,9 @@
             android:importantForAutofill="no"
             android:inputType="textPassword"
             android:textAlignment="center"
+            android:backgroundTint="@color/accent_light"
+            android:textStyle="bold"
+            android:textColor="@color/accent_dark"
             tools:ignore="SpeakableTextPresentCheck" />
 
     </LinearLayout>
@@ -86,7 +99,9 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/retype_password"
-            android:textColor="@color/accent_dark" />
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/retype_password"
@@ -97,6 +112,9 @@
             android:importantForAutofill="no"
             android:inputType="textPassword"
             android:textAlignment="center"
+            android:backgroundTint="@color/accent_light"
+            android:textStyle="bold"
+            android:textColor="@color/accent_dark"
             tools:ignore="SpeakableTextPresentCheck" />
 
     </LinearLayout>
@@ -104,7 +122,7 @@
     <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="100dp"
-    android:gravity="bottom"
+    android:gravity="center"
     android:orientation="horizontal">
 
     <Button
@@ -119,16 +137,18 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:gravity="bottom"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="bottom"
+            android:gravity="center"
             android:text="@string/sign_in_please"
+            android:textStyle="bold"
+            android:background="@color/main_background"
             android:textColor="@color/accent_dark" />
 
     </LinearLayout>
