@@ -21,8 +21,8 @@ public class ProfileActivity extends AppCompatActivity {
     Button demoButton;
     TextView username;
     TextView workoutDuration;
+    TextView totalsDuration;
     String user;
-    String workoutType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,8 @@ public class ProfileActivity extends AppCompatActivity {
         username.setText("Hello, " + user + "!");
         workoutDuration = findViewById(R.id.tvWorkoutsThisWeek);
         workoutDuration.setText("this week: " + Constants.totalWorkoutTime("demo"));
+        totalsDuration = findViewById(R.id.tvWorkoutsTotal);
+        totalsDuration.setText("total: " + Constants.totalWorkoutTime("express"));
 
         expressButton = findViewById(R.id.ibExpress);
         expressButton.setOnClickListener(new View.OnClickListener() {
