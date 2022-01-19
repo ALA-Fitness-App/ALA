@@ -160,7 +160,6 @@ public class ExerciseActivity extends AppCompatActivity implements TextToSpeech.
                     startActivity(intent2);
                 }
                 //player.pause();
-                //textToSpeech.stop();
             }
         }.start();
 
@@ -215,7 +214,7 @@ public class ExerciseActivity extends AppCompatActivity implements TextToSpeech.
      * @param text - String to be "read out".
      */
     private void readItOut(String text) {
-        textToSpeech.speak(text, TextToSpeech.QUEUE_ADD, null, "");
+        textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, "");
     }
 
     @Override
