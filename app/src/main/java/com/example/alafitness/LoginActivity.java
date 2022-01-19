@@ -14,18 +14,15 @@ import androidx.appcompat.app.AppCompatActivity;
  * Calls methods from the DBHelper class.
  */
 public class LoginActivity extends AppCompatActivity {
-
     EditText username, password;
     Button buttonLogin;
     Button buttonSignup;
     DBHelper DB;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         buttonLogin = findViewById(R.id.sign_in_button);
@@ -35,10 +32,8 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
-
                 if (user.equals("") || pass.equals("")) {
                     Toast.makeText(LoginActivity.this, "Please enter your username and password!", Toast.LENGTH_SHORT).show();
                 } else {
@@ -63,5 +58,4 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
 }

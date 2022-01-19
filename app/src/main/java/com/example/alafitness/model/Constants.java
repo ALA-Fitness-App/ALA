@@ -30,10 +30,9 @@ public class Constants {
      * @retrun exercisesList - ArrayList.
      */
     private static List<Exercise> getExercises() {
-
         ArrayList<Exercise> exercisesList = new ArrayList<>();
 
-        exercisesList.add(new Exercise("Get ready!", ExerciseType.BREAK, R.drawable.rest));
+        exercisesList.add(new Exercise("Get ready!", ExerciseType.BREAK, R.drawable.setreadygo));
         exercisesList.add(new Exercise("Break", ExerciseType.BREAK, R.drawable.rest));
 
         exercisesList.add(new Exercise("Plank", ExerciseType.CORE, R.drawable.plank));
@@ -71,10 +70,8 @@ public class Constants {
      * @return exercise - the exercise object that matches the specified exercise name.
      */
     private static Exercise getExercise(String exerciseName) {
-
         for (Exercise exercise : getExercises()) {
             exercise.getExerciseName();
-
             if (exerciseName.equals(exercise.getExerciseName())) {
                 return exercise;
             }
@@ -88,12 +85,9 @@ public class Constants {
      * @param exerciseType - Enum explaining type of exercise (CORE, LEGS, ARMS, CARDIO, BREAK).
      * @return randomList - an ArrayList containing exercises in random order.
      */
-
     private static ArrayList<Exercise> getRandomExerciseList(ExerciseType exerciseType) {
-
         List<Exercise> typeOfExercises = new ArrayList<>();
         ArrayList<Exercise> randomList = new ArrayList<>();
-
         for (Exercise exercise : getExercises()) {
             exercise.getExerciseType();
 
@@ -101,7 +95,6 @@ public class Constants {
                 typeOfExercises.add(exercise);
             }
         }
-
         Collections.shuffle(typeOfExercises);
         Exercise randomExercise1 = typeOfExercises.get(0);
         Exercise randomExercise2 = typeOfExercises.get(1);
@@ -118,9 +111,7 @@ public class Constants {
      * List of exercises for Express workout type, each exercise duration is set here.
      * @return expressExercisesList - ArrayList.
      */
-
     private static List<TimedExercise> getExpressExercises() {
-
         ArrayList<TimedExercise> expressExercisesList = new ArrayList<>();
         ArrayList<Exercise> armsList = getRandomExerciseList(ARMS);
         ArrayList<Exercise> legsList = getRandomExerciseList(LEGS);
@@ -181,9 +172,7 @@ public class Constants {
      * List of exercises for Pyramid workout type, each exercise duration is set here.
      * @return pyramidExercisesList - ArrayList.
      */
-
     private static List<TimedExercise> getPyramidExercises() {
-
         ArrayList<TimedExercise> pyramidExercisesList = new ArrayList<>();
         ArrayList<Exercise> armsList = getRandomExerciseList(ARMS);
         ArrayList<Exercise> legsList = getRandomExerciseList(LEGS);
@@ -245,9 +234,7 @@ public class Constants {
      * List of exercises for Demo workout, each exercise duration is set here.
      * @return demoExercisesList - ArrayList.
      */
-
     private static List<TimedExercise> getDemoExercises() {
-
         ArrayList<TimedExercise> demoExercisesList = new ArrayList<>();
         ArrayList<Exercise> armsList = getRandomExerciseList(ARMS);
         ArrayList<Exercise> legsList = getRandomExerciseList(LEGS);
@@ -275,18 +262,19 @@ public class Constants {
      * @return totalDuration/60 - int, time in minutes.
      */
     public static int totalWorkoutTime(String passedActivity) {
-
         int totalDuration = 0;
-
         for (TimedExercise exercise : getExercisesForActivity(passedActivity)) {
             totalDuration += exercise.getDuration().intValue();
         }
-
         return totalDuration/60; // to convert seconds to minutes
     }
 
+    /**
+     * Method that defines the type of workout that is called from the ExerciseActivity class.
+     * @param passedActivity
+     * @return
+     */
     public static List<TimedExercise> getExercisesForActivity (String passedActivity) {
-
         switch (passedActivity) {
             case "demo":
                 return getDemoExercises();

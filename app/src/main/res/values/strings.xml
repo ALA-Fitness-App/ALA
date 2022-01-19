@@ -8,7 +8,7 @@
     <string name="sign_up_link">Sign Up</string>
     <string name="new_password">New password</string>
     <string name="retype_password">Retype new password</string>
-    <string name="welcome">Welcome to the ALA Fitness! Please create your username and password!</string>
+    <string name="welcome">Welcome to ALA Fitness! Please create your username and password!</string>
     <string name="sign_in_please">If you already have a username and password, please sign in!</string>
     <string name="new_user">New user?</string>
     <string name="timed_pyramid">Timed pyramid</string>
@@ -29,4 +29,6 @@
     <string name="exxercise_image">exxercise image</string>
     <string name="exit">EXIT</string>
     <string name="end_of_exercise_image">end of exercise image</string>
+    <string name="pyramid">Pyramid</string>
+    <string name="express">Express</string>
 </resources>

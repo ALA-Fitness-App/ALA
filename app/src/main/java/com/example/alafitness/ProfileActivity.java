@@ -16,7 +16,6 @@ import com.example.alafitness.model.Constants;
  * Contains inherited methods.
  */
 public class ProfileActivity extends AppCompatActivity {
-
     ImageButton expressButton;
     ImageButton pyramidButton;
     Button demoButton;

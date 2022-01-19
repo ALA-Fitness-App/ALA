@@ -6,7 +6,6 @@ package com.example.alafitness.model;
  * Contains argument constructor and relevant getters and setters.
  */
 public class TimedExercise {
-
     Exercise exercise;
     Long duration;
 

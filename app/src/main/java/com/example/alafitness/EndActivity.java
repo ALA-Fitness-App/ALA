@@ -13,7 +13,6 @@ import android.widget.TextView;
  * contains inherited methods.
  */
 public class EndActivity extends AppCompatActivity {
-
     private Button exitBtn;
     TextView username;
     String user;
@@ -31,12 +30,10 @@ public class EndActivity extends AppCompatActivity {
         exitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent(EndActivity.this, ProfileActivity.class);
                 intent.putExtra("username", user);
                 startActivity(intent);
             }
         });
-
     }
 }
