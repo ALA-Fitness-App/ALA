@@ -157,6 +157,7 @@ public class ExerciseActivity extends AppCompatActivity implements TextToSpeech.
                 } else {
                     Intent intent2 = new Intent(ExerciseActivity.this, EndActivity.class);
                     intent2.putExtra("username", user);
+                    intent2.putExtra("workout type", passedWorkoutType);
                     startActivity(intent2);
                 }
                 //player.pause();
