@@ -47,12 +47,12 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/tvWorkoutsDone"
+            android:id="@+id/tvWorkoutStats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="8dp"
-            android:text="@string/workouts_done"
+            android:text="@string/workout_stats"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -76,7 +76,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/ivProfilePhoto"
-            app:layout_constraintTop_toBottomOf="@+id/tvWorkoutsDone" />
+            app:layout_constraintTop_toBottomOf="@+id/tvWorkoutStats" />
 
         <TextView
             android:id="@+id/tvWorkoutsTotal"

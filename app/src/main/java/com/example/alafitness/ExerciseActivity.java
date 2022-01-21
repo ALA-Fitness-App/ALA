@@ -32,6 +32,7 @@ public class ExerciseActivity extends AppCompatActivity implements TextToSpeech.
     private TextView exerciseType;
     private TextView timer;
     private TextView exerciseName;
+    private TextView exercisesRemaining;
     private ImageView exerciseImage;
     private Long progress;
     private ProgressBar timerBar;
@@ -65,6 +66,7 @@ public class ExerciseActivity extends AppCompatActivity implements TextToSpeech.
         exerciseType = findViewById(R.id.tvType);
         timer = findViewById(R.id.tvTimer);
         exerciseName = findViewById(R.id.ExerciseText);
+        exercisesRemaining = findViewById(R.id.Exercises_remaining);
         exerciseImage = findViewById(R.id.ivExerciseImage);
         timerBar = findViewById(R.id.progressBar);
         workoutType = findViewById(R.id.tvWorkoutType);
@@ -72,8 +74,8 @@ public class ExerciseActivity extends AppCompatActivity implements TextToSpeech.
         exerciseType.setText(timedExercise.getType().toString());
         exerciseName.setText(timedExercise.getName());
         exerciseImage.setImageResource(timedExercise.getImageLink());
+        //exercisesRemaining.setText("Remaining: " + currentExercise + "/" + Constants.totalAmountOfExercises(passedWorkoutType));
         timer.setText(timedExercise.getDuration().toString());
-
         nextBtn = (Button) findViewById(R.id.next_Button);
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +99,7 @@ public class ExerciseActivity extends AppCompatActivity implements TextToSpeech.
 
         TimedExercise timedExercise = exercises.get(currentExercise);
         if (timedExercise.getType().equals(ExerciseType.BREAK)) {
+            exercisesRemaining.setVisibility(View.INVISIBLE);
             exerciseType.setText(timedExercise.getName());
             exerciseName.setText("Next up: " + exercises.get(currentExercise + 1).getName());
             try {
@@ -105,6 +108,8 @@ public class ExerciseActivity extends AppCompatActivity implements TextToSpeech.
                 e.printStackTrace();
             }
         } else {
+            exercisesRemaining.setVisibility(View.VISIBLE);
+            exercisesRemaining.setText("Progress: " + (currentExercise + 1)/2 + "/" + Constants.totalAmountOfExercises(passedWorkoutType));
             exerciseType.setText(timedExercise.getType().toString());
             exerciseName.setText(timedExercise.getName());
             try {
@@ -157,6 +162,7 @@ public class ExerciseActivity extends AppCompatActivity implements TextToSpeech.
                 } else {
                     Intent intent2 = new Intent(ExerciseActivity.this, EndActivity.class);
                     intent2.putExtra("username", user);
+                    intent2.putExtra("workout type", passedWorkoutType);
                     startActivity(intent2);
                 }
                 //player.pause();

@@ -14,7 +14,7 @@
     <string name="timed_pyramid">Timed pyramid</string>
     <string name="demo">DEMO</string>
     <string name="choose_your_workout">Choose your workout:</string>
-    <string name="workouts_done">Workouts done:</string>
+    <string name="workout_stats">Workout stats:</string>
     <string name="total">total:</string>
     <string name="this_week">this week:</string>
     <string name="level_beginner">Level: Beginner</string>
@@ -31,4 +31,5 @@
     <string name="end_of_exercise_image">end of exercise image</string>
     <string name="pyramid">Pyramid</string>
     <string name="express">Express</string>
+    <string name="exercises_remaining">exercises remaining</string>
 </resources>
