@@ -27,6 +27,7 @@ public class Constants {
 
     /**
      * List of all the exercises as objects with a name, type and image.
+     *
      * @retrun exercisesList - ArrayList.
      */
     private static List<Exercise> getExercises() {
@@ -66,6 +67,7 @@ public class Constants {
 
     /**
      * Method to find an exercise with the specific name.
+     *
      * @param exerciseName - String.
      * @return exercise - the exercise object that matches the specified exercise name.
      */
@@ -82,6 +84,7 @@ public class Constants {
     /**
      * Method selects exercises with the specific type, adds them to an ArrayList and
      * shuffles it, then adds the shuffled exercises in order into a new ArrayList.
+     *
      * @param exerciseType - Enum explaining type of exercise (CORE, LEGS, ARMS, CARDIO, BREAK).
      * @return randomList - an ArrayList containing exercises in random order.
      */
@@ -109,6 +112,7 @@ public class Constants {
 
     /**
      * List of exercises for Express workout type, each exercise duration is set here.
+     *
      * @return expressExercisesList - ArrayList.
      */
     private static List<TimedExercise> getExpressExercises() {
@@ -170,6 +174,7 @@ public class Constants {
 
     /**
      * List of exercises for Pyramid workout type, each exercise duration is set here.
+     *
      * @return pyramidExercisesList - ArrayList.
      */
     private static List<TimedExercise> getPyramidExercises() {
@@ -232,6 +237,7 @@ public class Constants {
 
     /**
      * List of exercises for Demo workout, each exercise duration is set here.
+     *
      * @return demoExercisesList - ArrayList.
      */
     private static List<TimedExercise> getDemoExercises() {
@@ -258,6 +264,7 @@ public class Constants {
 
     /**
      * Method that calculates total workout time in minutes.
+     *
      * @param passedActivity - String describing workout type.
      * @return totalDuration/60 - int, time in minutes.
      */
@@ -266,15 +273,16 @@ public class Constants {
         for (TimedExercise exercise : getExercisesForActivity(passedActivity)) {
             totalDuration += exercise.getDuration().intValue();
         }
-        return totalDuration/60; // to convert seconds to minutes
+        return totalDuration / 60; // to convert seconds to minutes
     }
 
     /**
      * Method that defines the type of workout that is called from the ExerciseActivity class.
-     * @param passedActivity
-     * @return
+     *
+     * @param passedActivity - String, workout type e.g demo, express.
+     * @return List<TimedExercise> - list of exercises depending on the workout type.
      */
-    public static List<TimedExercise> getExercisesForActivity (String passedActivity) {
+    public static List<TimedExercise> getExercisesForActivity(String passedActivity) {
         switch (passedActivity) {
             case "demo":
                 return getDemoExercises();
@@ -286,5 +294,21 @@ public class Constants {
                 Log.e("passed workout type", "The workout type not recognised.");
         }
         return null;
+    }
+
+    /**
+     * Method that returns the number of exercises only (no breaks) in a workout.
+     *
+     * @param passedActivity - String, workout type e.g demo, express.
+     * @return int - amount of exercises (no breaks) in a workout.
+     */
+    public static int totalAmountOfExercises(String passedActivity) {
+        int totalExercisesOnly = 0;
+        for (TimedExercise exercise : getExercisesForActivity(passedActivity)) {
+            if (exercise.getType() != ExerciseType.BREAK) {
+                totalExercisesOnly++;
+            }
+        }
+        return totalExercisesOnly;
     }
 }

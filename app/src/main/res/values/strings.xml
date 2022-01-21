@@ -31,4 +31,5 @@
     <string name="end_of_exercise_image">end of exercise image</string>
     <string name="pyramid">Pyramid</string>
     <string name="express">Express</string>
+    <string name="exercises_remaining">exercises remaining</string>
 </resources>
