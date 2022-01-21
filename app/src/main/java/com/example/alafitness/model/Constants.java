@@ -295,20 +295,4 @@ public class Constants {
         }
         return null;
     }
-
-    /**
-     * Method that returns the number of exercises only (no breaks) in a workout.
-     *
-     * @param passedActivity - String, workout type e.g demo, express.
-     * @return int - amount of exercises (no breaks) in a workout.
-     */
-    public static int totalAmountOfExercises(String passedActivity) {
-        int totalExercisesOnly = 0;
-        for (TimedExercise exercise : getExercisesForActivity(passedActivity)) {
-            if (exercise.getType() != ExerciseType.BREAK) {
-                totalExercisesOnly++;
-            }
-        }
-        return totalExercisesOnly;
-    }
 }

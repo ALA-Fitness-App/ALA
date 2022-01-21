@@ -74,7 +74,6 @@ public class ExerciseActivity extends AppCompatActivity implements TextToSpeech.
         exerciseType.setText(timedExercise.getType().toString());
         exerciseName.setText(timedExercise.getName());
         exerciseImage.setImageResource(timedExercise.getImageLink());
-        //exercisesRemaining.setText("Remaining: " + currentExercise + "/" + Constants.totalAmountOfExercises(passedWorkoutType));
         timer.setText(timedExercise.getDuration().toString());
         nextBtn = (Button) findViewById(R.id.next_Button);
         nextBtn.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +108,7 @@ public class ExerciseActivity extends AppCompatActivity implements TextToSpeech.
             }
         } else {
             exercisesRemaining.setVisibility(View.VISIBLE);
-            exercisesRemaining.setText("Progress: " + (currentExercise + 1)/2 + "/" + Constants.totalAmountOfExercises(passedWorkoutType));
+            exercisesRemaining.setText("Progress: " + (currentExercise + 1)/2 + "/" + Constants.getExercisesForActivity(passedWorkoutType).size()/2);
             exerciseType.setText(timedExercise.getType().toString());
             exerciseName.setText(timedExercise.getName());
             try {
