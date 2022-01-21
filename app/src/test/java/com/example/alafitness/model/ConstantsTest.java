@@ -29,4 +29,11 @@ class ConstantsTest {
         assertEquals(expressList.get(1).getType(), expressList.get(7).getType());
         assertEquals(ExerciseType.LEGS, expressList.get(9).getType());
     }
+
+    @Test
+    void getExercisesForActivityPyramid() {
+        List<TimedExercise> pyramidList = Constants.getExercisesForActivity("pyramid");
+        assertNotEquals(pyramidList.get(1).getType(), pyramidList.get(7).getType());
+        assertNotEquals(ExerciseType.LEGS, pyramidList.get(9).getType());
+    }
 }

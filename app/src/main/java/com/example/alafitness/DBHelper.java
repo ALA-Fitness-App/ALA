@@ -22,7 +22,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
         MyDB.execSQL("create Table users(username TEXT NOT NULL primary key, password TEXT)");
-        MyDB.execSQL("create Table workouts(username TEXT NOT NULL, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, duration int, FOREIGN KEY (username))");
+        MyDB.execSQL("create Table workouts(username TEXT NOT NULL, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, duration int, PRIMARY KEY (username))");
     }
 
     @Override
@@ -119,12 +119,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public int getTotalWorkoutAmount(String username) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
-        Cursor cursor = MyDB.rawQuery("Select count (*) from workouts where username = ?", new String[]{username});
+        Cursor cursor = MyDB.rawQuery("Select count (*) as count from workouts where username = ?", new String[]{username});
         int totalAmount = 0;
         if (null != cursor) {
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
-                totalAmount = cursor.getInt(cursor.getColumnIndex("duration"));
+                totalAmount = cursor.getInt(cursor.getColumnIndex("count"));
             }
         }
         return totalAmount;
