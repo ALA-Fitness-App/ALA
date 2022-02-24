@@ -43,9 +43,10 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/username"
+            android:textColor="@color/white"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:textSize="18dp"
-            android:textColor="@color/white" />
+            tools:ignore="TextContrastCheck" />
 
         <EditText
             android:id="@+id/username"
@@ -75,7 +76,7 @@
             android:gravity="center"
             android:text="@string/password"
             android:textStyle="bold"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textColor="@color/white"/>
 
         <EditText
@@ -107,7 +108,8 @@
             android:clickable="true"
             app:backgroundTint="@color/accent_dark"
             android:text="@string/sign_in"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:focusable="true" />
 
     </LinearLayout>
 
@@ -122,9 +124,10 @@
             android:layout_height="match_parent"
             android:gravity="bottom"
             android:text="@string/new_user"
-            android:textSize="18dp"
+            android:textColor="@color/white"
+            android:textSize="18sp"
             android:textStyle="italic"
-            android:textColor="@color/white" />
+            tools:ignore="TextContrastCheck" />
 
 
     </LinearLayout>
@@ -143,7 +146,8 @@
             android:clickable="true"
             android:textColor="@color/white"
             app:backgroundTint="@color/accent_dark"
-            android:text="@string/sign_up_link" />
+            android:text="@string/sign_up_link"
+            android:focusable="true" />
 
     </LinearLayout>
 
