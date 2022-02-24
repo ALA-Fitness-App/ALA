@@ -8,6 +8,7 @@ import android.os.CountDownTimer;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -55,6 +56,7 @@ public class ExerciseActivity extends AppCompatActivity implements TextToSpeech.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_exercise);
         textToSpeech = new TextToSpeech(this, this);
         Intent intent = getIntent();
@@ -146,6 +148,15 @@ public class ExerciseActivity extends AppCompatActivity implements TextToSpeech.
                         player = MediaPlayer.create(getApplicationContext(), sound);
                         player.setLooping(false);
                         player.start();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                // Stop! sound when the exercise has ended
+                if (progress == 0 && !timedExercise.getType().equals(ExerciseType.BREAK)) {
+                    try {
+                        readItOut("Stop!");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

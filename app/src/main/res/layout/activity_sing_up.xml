@@ -37,9 +37,10 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/username"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@color/white" />
+            tools:ignore="TextContrastCheck" />
 
         <EditText
             android:id="@+id/new_username"
@@ -68,9 +69,10 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/new_password"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@color/white" />
+            tools:ignore="TextContrastCheck" />
 
         <EditText
             android:id="@+id/new_password"
@@ -99,9 +101,10 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/retype_password"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@color/white" />
+            tools:ignore="TextContrastCheck" />
 
         <EditText
             android:id="@+id/retype_password"
